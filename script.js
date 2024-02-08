@@ -30,7 +30,7 @@ async function loadChapterPages(chapterNumber) {
             chapter2.style.display = "none"
             imageList = [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.jpeg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Characters.jpeg',
+                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io//main/Chapter%201/Characters.jpeg',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/How%20to%20Read.jpeg',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%201.jpeg'
             ];
@@ -47,8 +47,6 @@ async function loadChapterPages(chapterNumber) {
         function showPage(index) {
             mangaPagesDiv.innerHTML = '';
             let img = document.createElement('img');
-            img.height = 1000;
-            img.width = 1300;
             img.src = imageList[index];
             img.alt = 'Chapter 1 Page';
             mangaPagesDiv.appendChild(img);
