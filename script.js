@@ -47,6 +47,8 @@ async function loadChapterPages(chapterNumber) {
         function showPage(index) {
             mangaPagesDiv.innerHTML = '';
             let img = document.createElement('img');
+            img.height = 1000;
+            img.width = 1300;
             img.src = imageList[index];
             img.alt = 'Chapter 1 Page';
             mangaPagesDiv.appendChild(img);
