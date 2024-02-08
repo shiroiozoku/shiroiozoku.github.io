@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiroi Ōzoku</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="media/imageicon.png" type="image/png">
 </head>
 <body>
     <header>
-        <h1>Shiroi Ōzoku</h1>
+        <h1 id="homeLink">Shiroi Ōzoku</h1>
     </header>
     <nav>
         <button id="prevPage"></button>
-        <a href="#" id="chapter1">Chapter 1</a>
+        <ul id="chapterList">
+            <a href="#" id="chapter2">Chapter 2</a>
+            <ul class="chapterDivider"></ul>
+            <a href="#" id="chapter1">Chapter 1</a>
+        </ul>
         <button id="nextPage"></button>
     </nav>
-    <div id="chapter1Pages"></div>
+        <div id="chapter1Pages"></div>  
     <script src="script.js"></script>
 </body>
 </html>

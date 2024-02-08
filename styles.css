@@ -8,6 +8,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: whitesmoke;
 }
 
 header {
@@ -17,26 +18,47 @@ header {
     text-align: center;
 }
 
+h1 {
+    cursor: pointer;
+}
+
+button {
+    border-radius: 100%;
+    background-color: #333;
+    color: white;  
+    cursor: pointer; 
+}
+
 nav {
     background-color: white;
     padding: 20px ;
     text-align: center;
     display: flex;
     justify-content: center; 
-    
+}
+
+nav div {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
 }
 
 nav a {
     text-decoration: none;
     color: #333;
-    display: inline-block;
+    display: block;
 }
+
 
 #chapter1Pages {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+#chapter2 {
+    margin-bottom: 10px;
 }
 
 #prevPage, #nextPage {
@@ -51,5 +73,26 @@ nav a {
 
 #prevPage button, #nextPage button {
     display: inline-block;
+    background-color: dimgray;
+    color: white;
 }
 
+.chapterDivider {
+    border: 1.5px solid #333;
+    margin: 5px 0;
+    padding: 0;
+}
+
+@media only screen and (min-width: 600px) {
+    #chapter1Pages img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #chapter1Pages img {
+        max-width: 50%;
+        height: auto;
+    }
+}
