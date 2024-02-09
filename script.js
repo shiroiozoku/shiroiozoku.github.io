@@ -54,29 +54,36 @@ async function loadChapterPages(chapterNumber) {
 
         function nextPage() {
             currentPageIndex++;
-            if (currentPageIndex >= totalImages - 1) { 
-
-                nextButton.style.display = 'none'; 
+            if (currentPageIndex >= totalImages - 1) {
+                nextButton.style.display = 'none';
+            }
+            if (currentPageIndex > 0) {
+                prevButton.style.display = ''; 
             }
             if (currentPageIndex >= totalImages) {
                 currentPageIndex = totalImages - 1;
             }
             showPage(currentPageIndex);
         }
-
+        
         function previousPage() {
             currentPageIndex--;
+            if (currentPageIndex <= 0) {
+                prevButton.style.display = 'none';
+            } else {
+                prevButton.style.display = ''; 
+            }
             if (currentPageIndex < 0) {
                 currentPageIndex = 0;
             }
-            if (currentPageIndex === 0) { 
-
-                prevButton.style.display = 'none'; 
+            if (currentPageIndex < totalImages - 1) {
+                nextButton.style.display = ''; 
             }
             showPage(currentPageIndex);
         }
         
-        showPage(currentPageIndex); 
+        showPage(currentPageIndex);
+        
         
 
         const prevButton = document.createElement('button');
@@ -88,6 +95,7 @@ async function loadChapterPages(chapterNumber) {
         nextButton.addEventListener('click', nextPage);
 
         document.getElementById('prevPage').appendChild(prevButton);
+        document.getElementById('nextPage').appendChild(nextButton);
 
         const chapter1Link = document.getElementById('chapter1');
         chapter1Link.parentNode.insertBefore(nextButton, chapter1Link.nextSibling);
