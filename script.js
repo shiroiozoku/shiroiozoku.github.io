@@ -15,7 +15,7 @@ document.getElementById('chapter2').addEventListener('click', function(event) {
 });
 
 document.getElementById('homeLink').addEventListener('click', function() {
-    window.location.href = "index.html"; 
+    window.location.href = ""; 
 });
 
 async function loadChapterPages(chapterNumber) {
