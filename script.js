@@ -23,22 +23,19 @@ async function loadChapterPages(chapterNumber) {
     const mangaPagesDiv = document.getElementById('chapter1Pages');
     mangaPagesDiv.innerHTML = '';
     document.querySelector('.chapterDivider').style.display = 'none';
-
     try {
         let imageList;
         if (chapterNumber === 1) {
-            chapter2.style.display = "none"
+            chapter2.style.display = "none";
             imageList = [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.jpeg',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io//main/Chapter%201/Characters.jpeg',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/How%20to%20Read.jpeg',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%201.jpeg'
             ];
+            document.getElementById('chapter1').classList.add('not-clickable');
         } else if (chapterNumber === 2) {
-            
-            imageList = [
-                
-            ];
+            imageList = [];
         }
 
         let currentPageIndex = 0;
@@ -47,6 +44,7 @@ async function loadChapterPages(chapterNumber) {
         function showPage(index) {
             mangaPagesDiv.innerHTML = '';
             let img = document.createElement('img');
+            img.width = 800
             img.src = imageList[index];
             img.alt = 'Chapter 1 Page';
             mangaPagesDiv.appendChild(img);
