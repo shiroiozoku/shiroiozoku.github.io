@@ -13,13 +13,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: dimgray;
+    background-color: black;
     text-align: center;
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-color: silver;
+    color: black;
     padding: 20px;
 }
 
@@ -32,10 +32,11 @@ button {
     border: none;
     background-color: transparent; 
     cursor: pointer;
+    color:white;
 }
 
 nav {
-    background-color: white;
+    background-color: #333;
     padding: 20px;
     text-align: center;
     display: flex;
@@ -58,12 +59,12 @@ nav #chapterList {
 
 nav #chapterList a {
     text-decoration: none;
-    color: #333;
+    color: white;
     margin: 0 10px; 
 }
 
 .chapterDivider {
-    border: 1px solid #333;
+    border: 1px solid white;
     margin: 0 10px; 
     flex-grow: 1; 
 }

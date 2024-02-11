@@ -98,7 +98,6 @@ async function loadChapterPages(chapterNumber) {
         const chapter1Link = document.getElementById('chapter1');
         chapter1Link.parentNode.insertBefore(nextButton, chapter1Link.nextSibling);
 
-    
         prevButton.style.display = 'inline-block';
         nextButton.style.display = 'inline-block';
 
