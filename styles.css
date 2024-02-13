@@ -20,7 +20,7 @@ body {
 header {
     background-color: #333;
     color: white;
-    padding: 30px;
+    padding: 25px;
 }
 
 h1 {
@@ -66,7 +66,7 @@ nav #chapterList a {
     color: #333;
     margin: 0 30px; 
     padding: 20px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .chapterDivider {
