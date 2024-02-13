@@ -13,14 +13,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: #333;
     text-align: center;
 }
 
 header {
-    background-color: silver;
-    color: black;
-    padding: 20px;
+    background-color: #333;
+    color: white;
+    padding: 30px;
 }
 
 h1 {
@@ -32,11 +32,12 @@ button {
     border: none;
     background-color: transparent; 
     cursor: pointer;
-    color:white;
+    color: black;
+    font-size: 22px;
 }
 
 nav {
-    background-color: #333;
+    background-color: white;
     padding: 20px;
     text-align: center;
     display: flex;
@@ -44,6 +45,10 @@ nav {
     align-items: center;
     position: sticky;
     top: 0px;
+    border-top: none; 
+    border-right: none; 
+    border-bottom: 4px solid #333; 
+    border-left: none;
 }
 
 nav #chapterList {
@@ -51,7 +56,6 @@ nav #chapterList {
     margin: 0;
     padding: 0;
     display: flex;
-    list-style-type: none; 
     margin: 0;
     padding: 0;
     display: flex;
@@ -59,12 +63,14 @@ nav #chapterList {
 
 nav #chapterList a {
     text-decoration: none;
-    color: white;
-    margin: 0 10px; 
+    color: #333;
+    margin: 0 30px; 
+    padding: 20px;
+    font-size: 18px;
 }
 
 .chapterDivider {
-    border: 1px solid white;
+    border: 1px solid #333;
     margin: 0 10px; 
     flex-grow: 1; 
 }
