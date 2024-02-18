@@ -23,7 +23,6 @@ async function loadChapterPages(chapterNumber) {
 
     const mangaPagesDiv = document.getElementById('chapter1Pages');
     mangaPagesDiv.innerHTML = '';
-    document.querySelector('.chapterDivider').style.display = 'none';
 
     try {
         let imageList = [];
