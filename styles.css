@@ -20,53 +20,57 @@ body {
 header {
     background-color: #222;
     color: white;
-    padding: 30px;
+    padding: 40px;
     position: sticky;
     top: 0px;
 }
 
-h1 {
+#homeLink:hover {
     cursor: pointer;
-    margin: 0; 
 }
-
 
 nav {
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
     align-items: center;
-    border-top: none; 
-    border-right: none; 
-    border-bottom: 4px solid #222; 
-    border-left: none;
-    padding: 25px;
+    border-bottom: 4px solid #222;
+    overflow: hidden;
+    text-align: center;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 nav #chapterList {
-    list-style-type: none; 
+    list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-    margin: 0;
-    padding: 0;
-    display: flex;
+    align-items: center;
 }
 
 nav #chapterList a {
-    text-decoration: none;
     color: #222;
-    margin: 0 30px; 
-    padding: 20px;
+    text-decoration: none;
     font-size: 18px;
+    padding: 14px 20px;
+    transition: 0.4s ease-in-out;
 }
 
-.chapterDivider {
-    border: 1px solid #222;
-    margin: 0 10px; 
-    flex-grow: 1; 
+nav #chapterList a:hover:not(.not-clickable) {
+    background-color: #222;
+    color: white;
+}
+
+nav #chapterList .not-clickable:hover {
+    background-color: transparent;
+    color: #222;
+}
+
+nav #chapterList .not-clickable {
+    cursor: text;
 }
 
 #chapter1Pages {
@@ -87,13 +91,37 @@ img {
     height: auto;
 }
 
+
 .not-clickable {
-    cursor:text;
+    cursor: text;
 }
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1000px) {
+    nav {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    nav #chapterList {
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    nav #chapterList .chapterDivider {
+        display: none;
+    }
+
     nav #chapterList a {
-        margin: 0 20px; 
+        margin: 0 20px;
+    }
+
+    nav #chapterList a:first-child {
+        margin-left: auto;
+    }
+
+    nav #chapterList a:last-child {
+        margin-right: auto;
     }
 }
