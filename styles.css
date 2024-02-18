@@ -30,6 +30,7 @@ h1 {
     margin: 0; 
 }
 
+
 nav {
     background-color: white;
     padding: 20px;
@@ -41,7 +42,7 @@ nav {
     border-right: none; 
     border-bottom: 4px solid #222; 
     border-left: none;
-    padding: 25px; 
+    padding: 25px;
 }
 
 nav #chapterList {
@@ -51,6 +52,7 @@ nav #chapterList {
     display: flex;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 nav #chapterList a {
@@ -74,22 +76,17 @@ nav #chapterList a {
     align-items: center;
 }
 
-.pageSeparator {
-    width: 100%;
-    height: 5px;
-    background-color: #222;
-}
-
 img {
     max-width: 100%;
     height: auto;
 }
 
 .not-clickable {
-    cursor: text;
+    cursor:text;
 }
 
-@media only screen and (min-width: 767px) {
+
+@media only screen and (min-width: 768px) {
     nav #chapterList a {
         margin: 0 20px; 
     }
