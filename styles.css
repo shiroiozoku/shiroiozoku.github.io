@@ -33,8 +33,7 @@ nav {
     background-color: white;
     padding: 10px;
     text-align: center;
-    display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     border-bottom: 4px solid #222;
     overflow: hidden;
@@ -47,7 +46,6 @@ nav #chapterList {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
     align-items: center;
 }
 
@@ -56,12 +54,19 @@ nav #chapterList a {
     text-decoration: none;
     font-size: 18px;
     padding: 14px 20px;
-    transition: 0.4s ease-in-out;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 nav #chapterList a:hover:not(.not-clickable) {
     background-color: #222;
     color: white;
+}
+
+nav #chapterList a:active {
+    color:white;
+    background-color: #222;
 }
 
 nav #chapterList .not-clickable:hover {
