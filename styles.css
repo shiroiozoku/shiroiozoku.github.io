@@ -57,6 +57,7 @@ nav #chapterList a {
     transition: 0.3s ease-in-out;
     display: flex;
     justify-content: space-evenly;
+    border-bottom: 2px solid transparent;
 }
 
 nav #chapterList a:hover:not(.not-clickable) {
@@ -67,6 +68,7 @@ nav #chapterList a:hover:not(.not-clickable) {
 nav #chapterList a:active {
     color:white;
     background-color: #222;
+    border:none;
 }
 
 nav #chapterList .not-clickable:hover {
@@ -76,6 +78,7 @@ nav #chapterList .not-clickable:hover {
 
 nav #chapterList .not-clickable {
     cursor: text;
+    border:none;
 }
 
 #chapter1Pages {
@@ -83,6 +86,10 @@ nav #chapterList .not-clickable {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+#chapter1 {
+    border-top: #222 solid 2px;
 }
 
 .pageSeparator {
@@ -130,3 +137,4 @@ img {
         margin-right: auto;
     }
 }
+
