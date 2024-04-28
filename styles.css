@@ -76,7 +76,7 @@ nav #chapterList .not-clickable {
     border: none;
 }
 
-#chapter1Pages {
+#chapterPages {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -84,13 +84,16 @@ nav #chapterList .not-clickable {
 }
 
 #chapter1 {
-    border-top: #222 solid 2px;
+    border-top: #222 solid 3px;
 }
 
 #chapter2 {
-    border-top: transparent solid 2px;
+    border-top: #222 solid 3px;
 }
 
+chapter3 {
+    border-top: transparent solid 3px;
+}
 
 .pageSeparator {
     width: 100%;

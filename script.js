@@ -10,9 +10,18 @@ document.getElementById('chapter1').addEventListener('click', function(event) {
 document.getElementById('chapter2').addEventListener('click', function(event) {
     event.preventDefault();
     if (!readingChapter) {
-        alert("Chapter 2 has not been released yet.");
+        loadChapterPages(2);
     }
 });
+
+document.getElementById('chapter3').addEventListener('click', function(event) {
+    event.preventDefault();
+    if (!readingChapter) {
+        //loadChapterPages(3);
+        alert("Chapter 3 has not been released yet.");
+    }
+});
+
 
 document.getElementById('homeLink').addEventListener('click', function() {
     window.location.href = "";
@@ -21,14 +30,16 @@ document.getElementById('homeLink').addEventListener('click', function() {
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
 
-    const mangaPagesDiv = document.getElementById('chapter1Pages');
+    const mangaPagesDiv = document.getElementById('chapterPages');
     mangaPagesDiv.innerHTML = '';
+
 
     try {
         let imageList = [];
         if (chapterNumber === 1) {
             document.getElementById('chapter1').classList.add('not-clickable');
             chapter2.style.display = "none";
+            chapter3.style.display = "none";
             imageList = [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.png',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io//main/Chapter%201/Characters.png',
@@ -43,6 +54,15 @@ async function loadChapterPages(chapterNumber) {
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%208.png',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%209.png',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%2010.png'
+            ];
+        } 
+        else if (chapterNumber === 2) {
+            document.getElementById('chapter2').classList.add('not-clickable');
+            chapter1.style.display = "none";
+            chapter3.style.display = "none";
+            imageList = [
+               
+                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Placeholder.png',
     
             ];
         } 
