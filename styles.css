@@ -20,7 +20,7 @@ body {
 header {
     background-color: #222;
     color: white;
-    padding: 25px;
+    padding: 26px;
     position: sticky;
     top: 0px;
 }
@@ -57,9 +57,11 @@ nav #chapterList a {
     transition: 0.2s ease-out;
     display: flex;
     justify-content: space-evenly;
-    border-bottom: 2px solid transparent;
+    box-sizing: border-box; 
+    height: 48px; 
+    line-height: 20px; 
+    align-items: center;
 }
-
 
 nav #chapterList a:hover:not(.not-clickable) {
     color: #555;
@@ -85,14 +87,23 @@ nav #chapterList .not-clickable {
 
 #chapter1 {
     border-top: #222 solid 3px;
+    border-bottom: #222 solid 3px;
 }
 
 #chapter2 {
     border-top: #222 solid 3px;
 }
 
-chapter3 {
-    border-top: transparent solid 3px;
+#chapter3 {
+    border-top: #222 solid 3px;
+}
+
+#chapter4 {
+    border-top: #222 solid 3px;
+}
+
+#chapter5 {
+    border-top: #222 solid 3px;
 }
 
 .pageSeparator {

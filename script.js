@@ -22,6 +22,22 @@ document.getElementById('chapter3').addEventListener('click', function(event) {
     }
 });
 
+document.getElementById('chapter4').addEventListener('click', function(event) {
+    event.preventDefault();
+    if (!readingChapter) {
+        //loadChapterPages(4);
+        alert("Chapter 4 has not been released yet.");
+    }
+});
+
+document.getElementById('chapter5').addEventListener('click', function(event) {
+    event.preventDefault();
+    if (!readingChapter) {
+        //loadChapterPages(5);
+        alert("Chapter 5 has not been released yet.");
+    }
+});
+
 
 document.getElementById('homeLink').addEventListener('click', function() {
     window.location.href = "";
@@ -40,6 +56,8 @@ async function loadChapterPages(chapterNumber) {
             document.getElementById('chapter1').classList.add('not-clickable');
             chapter2.style.display = "none";
             chapter3.style.display = "none";
+            chapter4.style.display = "none";
+            chapter5.style.display = "none";
             imageList = [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.png',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io//main/Chapter%201/Characters.png',
@@ -60,6 +78,8 @@ async function loadChapterPages(chapterNumber) {
             document.getElementById('chapter2').classList.add('not-clickable');
             chapter1.style.display = "none";
             chapter3.style.display = "none";
+            chapter4.style.display = "none";
+            chapter5.style.display = "none";
             imageList = [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2011.png',
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2012.png',
