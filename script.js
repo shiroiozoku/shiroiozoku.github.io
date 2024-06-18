@@ -17,8 +17,8 @@ document.getElementById('chapter2').addEventListener('click', function(event) {
 document.getElementById('chapter3').addEventListener('click', function(event) {
     event.preventDefault();
     if (!readingChapter) {
-        loadChapterPages(3);
-        //alert("Chapter 3 has not been released yet.");
+        //loadChapterPages(3);
+        alert("Chapter 3 has not been released yet.");
     }
 });
 
@@ -96,28 +96,30 @@ async function loadChapterPages(chapterNumber) {
             ];
         } 
         
-        else if (chapterNumber === 3) {
+        /*else if (chapterNumber === 3) {
             document.getElementById('chapter3').classList.add('not-clickable');
             chapter1.style.display = "none";
             chapter2.style.display = "none";
             chapter4.style.display = "none";
             chapter5.style.display = "none";
             imageList = [
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2021.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2022.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2023.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2024.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2025.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2026.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2027.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2028.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2029.svg',
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2030.svg',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2021.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2022.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2023.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2024.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2025.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2026.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2027.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2028.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2029.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2030.png',
+
+                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Placeholder.png',
 
                 
             ];
         }
-        /* else if (chapterNumber === 4) {
+          else if (chapterNumber === 4) {
             document.getElementById('chapter4').classList.add('not-clickable');
             chapter1.style.display = "none";
             chapter2.style.display = "none";
