@@ -163,7 +163,7 @@ async function loadChapterPages(chapterNumber) {
         }
         */
 
-            const totalImages = imageList.length;
+      const totalImages = imageList.length;
 
         function createPageSeparator() {
             const separator = document.createElement('div');
@@ -175,28 +175,23 @@ async function loadChapterPages(chapterNumber) {
             const img = new Image();
             img.width = 1000;
             img.src = imageList[i];
-            
-            // Set alt attributes for Chapter 1
-            if (chapterNumber === 1) {
+
+         if (chapterNumber === 1 && i < 3) {
                 if (i === 0) {
-                    img.alt = 'Chapter 1 Title';
+                    img.alt = 'Title';
                 } else if (i === 1) {
-                    img.alt = 'Chapter 1 Characters';
+                    img.alt = 'Characters';
                 } else if (i === 2) {
-                    img.alt = 'Chapter 1 How to Read';
-                } else {
-                    img.alt = `Chapter 1 Page ${i - 2}`;
+                    img.alt = 'How to Read';
                 }
+            } else {
+                img.alt = `Page ${i - 2}`;
             }
-            
-            // Set alt attributes for Chapter 2
-            else if (chapterNumber === 2) {
+
+             if (chapterNumber === 2) {
                 if (i === 0) {
-                    img.alt = 'Chapter 2 Page 11';
-                } else {
-                    img.alt = `Chapter 2 Page ${i - 1}`;
-                }
-            }
+                    img.alt = `Page ${i + 1}`;
+                }  
 
             mangaPagesDiv.appendChild(img);
 
@@ -209,4 +204,3 @@ async function loadChapterPages(chapterNumber) {
         console.error('Error loading pages:', error);
     }
 }
- 
