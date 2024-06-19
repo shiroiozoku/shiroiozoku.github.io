@@ -209,7 +209,4 @@ async function loadChapterPages(chapterNumber) {
         console.error('Error loading pages:', error);
     }
 }
-    } catch (error) {
-        console.error('Error loading pages:', error);
-    }
-}
+ 
