@@ -162,7 +162,7 @@ async function loadChapterPages(chapterNumber) {
             ];
         }
         */
-        const totalImages = imageList.length;
+             const totalImages = imageList.length;
 
         function createPageSeparator() {
             const separator = document.createElement('div');
@@ -174,7 +174,22 @@ async function loadChapterPages(chapterNumber) {
             const img = new Image();
             img.width = 1000;
             img.src = imageList[i];
-            img.alt = `Chapter ${chapterNumber} Page ${i + 1}`;
+
+        
+            if (chapterNumber === 1) {
+                if (i === 0) {
+                    img.alt = 'Title';
+                } else if (i === 1) {
+                    img.alt = 'Characters';
+                } else if (i === 2) {
+                    img.alt = 'How to Read';
+                } else {
+                    img.alt = `Page ${i + 1}`;
+                }
+            } else {
+                img.alt = `Page ${i + 1}`;
+            }
+
             mangaPagesDiv.appendChild(img);
 
             if (i < totalImages - 1) {
