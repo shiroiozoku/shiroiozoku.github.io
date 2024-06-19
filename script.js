@@ -162,45 +162,49 @@ async function loadChapterPages(chapterNumber) {
             ];
         }
         */
+const totalImages = imageList.length;
 
-      const totalImages = imageList.length;
+function createPageSeparator() {
+    const separator = document.createElement('div');
+    separator.classList.add('pageSeparator');
+    return separator;
+}
 
-        function createPageSeparator() {
-            const separator = document.createElement('div');
-            separator.classList.add('pageSeparator');
-            return separator;
+for (let i = 0; i < totalImages; i++) {
+    const img = new Image();
+    img.width = 1000;
+    img.src = imageList[i];
+
+    if (chapterNumber === 1) {
+        const altTexts = [
+            'Title',
+            'Characters',
+            'How to Read',
+            'Page 1',
+            'Page 2',
+            'Page 3',
+            'Page 4',
+            'Page 5',
+            'Page 6',
+            'Page 7',
+            'Page 8',
+            'Page 9',
+            'Page 10'
+        ];
+
+        if (i < altTexts.length) {
+            img.alt = altTexts[i];
+        } else {
+            img.alt = `Page ${i - 2}`; // Fallback if more pages are added
         }
+    } else {
+        img.alt = `Page ${i + 1}`;
+    }
 
-        for (let i = 0; i < totalImages; i++) {
-            const img = new Image();
-            img.width = 1000;
-            img.src = imageList[i];
+    mangaPagesDiv.appendChild(img);
 
-         if (chapterNumber === 1 && i < 3) {
-                if (i === 0) {
-                    img.alt = 'Title';
-                } else if (i === 1) {
-                    img.alt = 'Characters';
-                } else if (i === 2) {
-                    img.alt = 'How to Read';
-                }
-            } else {
-                img.alt = `Page ${i - 2}`;
-            }
-
-             if (chapterNumber === 2) {
-                if (i === 0) {
-                    img.alt = `Page ${i + 1}`;
-                }  
-
-            mangaPagesDiv.appendChild(img);
-
-            if (i < totalImages - 1) {
-                mangaPagesDiv.appendChild(createPageSeparator());
-            }
-        }
-
-    } catch (error) {
-        console.error('Error loading pages:', error);
+    if (i < totalImages - 1) {
+        mangaPagesDiv.appendChild(createPageSeparator());
     }
 }
+
