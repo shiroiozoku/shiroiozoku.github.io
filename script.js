@@ -43,6 +43,18 @@ document.getElementById('homeLink').addEventListener('click', function() {
     window.location.href = "";
 });
 
+async function loadImageSequentially(src, alt) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.width = 1000;
+        img.src = src;
+        img.alt = alt;
+
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+    });
+}
+
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
 
@@ -238,11 +250,7 @@ async function loadChapterPages(chapterNumber) {
         }
 
         for (let i = 0; i < totalImages; i++) {
-            const img = new Image();
-            img.width = 1000;
-            img.src = imageList[i];
-            img.alt = altTexts[i]; 
-
+            const img = await loadImageSequentially(imageList[i], altTexts[i]);
             mangaPagesDiv.appendChild(img);
 
             if (i < totalImages - 1) {
