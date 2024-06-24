@@ -160,9 +160,9 @@ async function loadChapterPages(chapterNumber) {
             ];
              altTexts = [
                 'Page 21',
+                'Placeholder',
                 //'Page 22',
                 //'Page 23',
-                //'Placeholder',
                 //'Page 24',
                 //'Page 25',
                 //'Page 26',
@@ -194,9 +194,9 @@ async function loadChapterPages(chapterNumber) {
             ];
              altTexts = [
                 'Page 31',
+                'Placeholder',
                 //'Page 32',
                 //'Page 33',
-                //'Placeholder',
                 //'Page 34',
                 //'Page 35',
                 //'Page 36',
@@ -228,9 +228,9 @@ async function loadChapterPages(chapterNumber) {
             ];
              altTexts = [
                 'Page 41',
+                'Placeholder',
                 //'Page 42',
                 //'Page 43',
-                //'Placeholder',
                 //'Page 44',
                 //'Page 45',
                 //'Page 46',
