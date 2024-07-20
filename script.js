@@ -157,6 +157,8 @@ const chapters = {
         */ 
 };
 
+const comments = document.getElementsByTagName('iframe');
+
 document.getElementById('chapterList').addEventListener('click', (event) => {
     const target = event.target;
     if (target.tagName === 'A' && !readingChapter) {
@@ -164,6 +166,9 @@ document.getElementById('chapterList').addEventListener('click', (event) => {
         const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
         if (chapters[chapterNumber]) {
             loadChapterPages(chapterNumber);
+            for (let i = 0; i < comments.length; i++) {
+                comments[i].style.display = 'none';
+            }
         } else {
             alert(`Chapter ${chapterNumber} has not been released yet.`);
         }
@@ -176,7 +181,6 @@ async function loadImageSequentially(src, alt) {
         img.width = 1000;
         img.src = src;
         img.alt = alt;
-
         img.onload = () => resolve(img);
         img.onerror = reject;
     });
@@ -185,6 +189,9 @@ async function loadImageSequentially(src, alt) {
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
 
+   
+
+    
     const chapterData = chapters[chapterNumber];
     const mangaPagesDiv = document.getElementById('chapterPages');
     mangaPagesDiv.innerHTML = '';
@@ -225,3 +232,5 @@ function hideOtherChapters(exceptChapterNumber) {
         }
     });
 }
+
+
