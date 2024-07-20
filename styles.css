@@ -135,13 +135,13 @@ img {
 
 
 @media only screen and (max-width: 1000px) {
-    nav {
+    nav, iframe {
         width: 100%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    nav #chapterList {
+    nav #chapterList, iframe {
         flex-grow: 1;
         justify-content: center;
     }
@@ -157,6 +157,13 @@ img {
     nav #chapterList a:first-child {
         margin-left: auto;
     }
+
+    nav #chapterList a:last-child {
+        margin-right: auto;
+    }
+}
+
+
 
     nav #chapterList a:last-child {
         margin-right: auto;
