@@ -63,9 +63,9 @@ nav #chapterList a {
     transition: 0.2s ease-out;
     display: flex;
     justify-content: space-evenly;
-    box-sizing: border-box; 
-    height: 48px; 
-    line-height: 20px; 
+    box-sizing: border-box;
+    height: 48px;
+    line-height: 20px;
     align-items: center;
 }
 
@@ -120,7 +120,7 @@ nav #chapterList .not-clickable {
 
 @media (max-width: 600px) {
     .pageSeparator {
-        height: 3px; 
+        height: 3px;
     }
 }
 
@@ -133,9 +133,8 @@ img {
     cursor: text;
 }
 
-
 @media only screen and (max-width: 1000px) {
-    nav, iframe {
+    nav, iframe, .collapsible {
         width: 100%;
     }
 }
@@ -163,9 +162,72 @@ img {
     }
 }
 
+.collapsible {
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+    padding: 14px;
+    text-align: center;
+    outline: none;
+    font-size: 18px;
+    transition: ease-in 0.2s;
+    box-shadow: none;
+    border: none;
+    position: relative;
+    width: 66%;
+}
 
+.collapsible:before, .collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-    nav #chapterList a:last-child {
-        margin-right: auto;
+.collapsible:before {
+    left: 10px;
+}
+
+.collapsible:after {
+    right: 10px;
+}
+
+.active:before, .active:after {
+    content: '\2212';
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #222;
+}
+
+@media (max-width: 600px) {
+    .collapsible {
+        padding: 14px;
+        width: 100%;
+    }
+
+    .collapsible:before, .collapsible:after {
+        font-size: 20px;
+        width: 20px;
     }
 }
+
+@media (max-width: 400px) {
+    .collapsible {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .collapsible:before, .collapsible:after {
+        font-size: 18px;
+        width: 18px;
+    }
+}
+
