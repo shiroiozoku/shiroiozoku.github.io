@@ -157,18 +157,89 @@ const chapters = {
         */ 
 };
 
-const comments = document.getElementsByTagName('iframe');
+document.addEventListener("DOMContentLoaded", function(event) {
+    const coll = document.getElementsByClassName("collapsible");
+
+    for (let i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        const content = this.nextElementSibling;
+        const otherCollapsibles = document.querySelectorAll('.collapsible.active');
+        for (let j = 0; j < otherCollapsibles.length; j++) {
+          const otherContent = otherCollapsibles[j].nextElementSibling;
+          if (otherCollapsibles[j] !== this && otherContent.style.maxHeight) {
+            otherCollapsibles[j].classList.remove("active");
+            otherContent.style.maxHeight = null;
+            otherCollapsibles[j].textContent = "Show Comments";
+          }
+        }
+
+        this.classList.toggle("active");
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+          this.textContent = "Show Comments";
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.textContent = "Hide Comments";
+        }
+      });
+    }
+});
+
+
+function searchFunction() {
+    const input = document.getElementById("searchInput").value.trim().toLowerCase();
+    const collapsibles = document.getElementsByClassName("collapsible");
+
+    const isInputEmpty = input === "";
+
+    for (let i = 0; i < collapsibles.length; i++) {
+        const rows = collapsibles[i].nextElementSibling.querySelectorAll("table tr");
+        let found = false;
+        for (let j = 0; j < rows.length; j++) {
+            const row = rows[j];
+            let phoneNumberFound = false;
+            const tds = row.querySelectorAll("td");
+            for (let k = 0; k < tds.length; k++) {
+                const tdText = tds[k].textContent.trim().toLowerCase();
+                if (tdText.startsWith(input)) {
+                    phoneNumberFound = true;
+                    break;
+                }
+            }
+            if (!isInputEmpty && phoneNumberFound) {
+                row.classList.add("highlight");
+                found = true;
+            } else {
+                row.classList.remove("highlight");
+            }
+        }
+
+        if (isInputEmpty) {
+            collapsibles[i].classList.remove("active");
+            collapsibles[i].nextElementSibling.style.maxHeight = null;
+            collapsibles[i].style.display = "block";
+        } else {
+            if (found) {
+                collapsibles[i].classList.add("active");
+                collapsibles[i].nextElementSibling.style.maxHeight = collapsibles[i].nextElementSibling.scrollHeight + "px";
+                collapsibles[i].style.display = "block";
+            } else {
+                collapsibles[i].classList.remove("active");
+                collapsibles[i].nextElementSibling.style.maxHeight = null;
+                collapsibles[i].style.display = "none";
+            }
+        }
+    }
+}
 
 document.getElementById('chapterList').addEventListener('click', (event) => {
     const target = event.target;
-    if (target.tagName === 'A' && !readingChapter) {
+    if (target.tagName === 'A' && !readingChapter) {  
         event.preventDefault();
         const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
-        if (chapters[chapterNumber]) {
+        if (chapters[chapterNumber]) {  
             loadChapterPages(chapterNumber);
-            for (let i = 0; i < comments.length; i++) {
-                comments[i].style.display = 'none';
-            }
+            
         } else {
             alert(`Chapter ${chapterNumber} has not been released yet.`);
         }
@@ -186,12 +257,10 @@ async function loadImageSequentially(src, alt) {
     });
 }
 
+
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
 
-   
-
-    
     const chapterData = chapters[chapterNumber];
     const mangaPagesDiv = document.getElementById('chapterPages');
     mangaPagesDiv.innerHTML = '';
@@ -200,6 +269,10 @@ async function loadChapterPages(chapterNumber) {
         link.classList.add('not-clickable');
     });
     hideOtherChapters(chapterNumber);
+
+    document.querySelectorAll('.collapsible').forEach(coll => {
+        coll.style.display = 'none';
+    });
 
     try {
         const totalImages = chapterData.images.length;
@@ -232,5 +305,4 @@ function hideOtherChapters(exceptChapterNumber) {
         }
     });
 }
-
 
