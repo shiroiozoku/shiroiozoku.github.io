@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function searchFunction() {
     const input = document.getElementById("searchInput").value.trim().toLowerCase();
     const collapsibles = document.getElementsByClassName("collapsible");
+    const iframes = document.getElementsByClassName("iframe");
 
     const isInputEmpty = input === "";
 
@@ -227,6 +228,7 @@ function searchFunction() {
                 collapsibles[i].classList.remove("active");
                 collapsibles[i].nextElementSibling.style.maxHeight = null;
                 collapsibles[i].style.display = "none";
+                iframes[i].style.display = "none";
             }
         }
     }
@@ -305,4 +307,3 @@ function hideOtherChapters(exceptChapterNumber) {
         }
     });
 }
-
