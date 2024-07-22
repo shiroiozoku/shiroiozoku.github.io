@@ -173,8 +173,10 @@ img {
     transition: ease-in 0.2s;
     box-shadow: none;
     border: none;
-    position: relative;
     width: 66%;
+    position: sticky!important;
+    top: 80px;
+    max-width: 1010px;
 }
 
 .collapsible:before, .collapsible:after {
@@ -230,4 +232,3 @@ img {
         width: 18px;
     }
 }
-
