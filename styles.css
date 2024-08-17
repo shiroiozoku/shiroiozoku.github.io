@@ -11,8 +11,7 @@
 
 @font-face {
     font-family: 'Manga Font';
-    src: url('manga.ttf') format('truetype');
-    font-display: swap;
+    src: url('manga.ttf') format('truetype');  
 }
 
 body {
@@ -166,7 +165,7 @@ img {
     background-color: #222;
     color: white;
     cursor: pointer;
-    padding: 14px;
+    padding: 16px;
     text-align: center;
     outline: none;
     font-size: 18px;
@@ -177,6 +176,7 @@ img {
     position: sticky!important;
     top: 80px;
     max-width: 1010px;
+    font-family: 'Manga Font', Arial, sans-serif;
 }
 
 .collapsible:before, .collapsible:after {
@@ -232,3 +232,10 @@ img {
         width: 18px;
     }
 }
+
+.comment-box {
+    width: 100%;
+    max-width: 1002px;
+    height: 326px;
+}
+
