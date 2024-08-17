@@ -13,23 +13,31 @@
         <h1 id="homeLink">Shiroi Ozoku</h1>
     </header>
     <nav>
-        <main>
-            <div id="chapterNav">
-                <ul id="chapterList">
-                    <li><a href="#" id="chapter5">Chapter 5</a></li>
-                    <li><a href="#" id="chapter4">Chapter 4</a></li>
-                    <li><a href="#" id="chapter3">Chapter 3</a></li>
-                    <li><a href="#" id="chapter2">Chapter 2</a></li>
-                    <li><a href="#" id="chapter1">Chapter 1</a></li>
-                </ul>
-            </div>
-        </main>
+        <div id="chapterNav">
+            <ul id="chapterList">
+                <li><a href="#" id="chapter5">Chapter 5</a></li>
+                <li><a href="#" id="chapter4">Chapter 4</a></li>
+                <li><a href="#" id="chapter3">Chapter 3</a></li>
+                <li><a href="#" id="chapter2">Chapter 2</a></li>
+                <li><a href="#" id="chapter1">Chapter 1</a></li>
+            </ul>
+        </div>
     </nav>
-    <div id="chapterPages"></div>
-    <button type="button" class="collapsible" style="font-family: 'Manga Font', Arial, sans-serif;">Show Comments</button>
+    <main>
+        <div id="chapterPages"></div>
+    </main>
+    <button type="button" class="collapsible">Show Comments</button>
     <div class="content">
-        <iframe src="https://www5.cbox.ws/box/?boxid=952057&boxtag=AcwfB0" width="1002px" height="333" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
+        <iframe src="https://www5.cbox.ws/box/?boxid=952057&boxtag=AcwfB0" 
+                title="Comments Section"
+                class="comment-box"
+                allowtransparency="yes" 
+                allow="autoplay" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0" 
+                scrolling="auto"></iframe>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
