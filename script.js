@@ -186,54 +186,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 
-function searchFunction() {
-    const input = document.getElementById("searchInput").value.trim().toLowerCase();
-    const collapsibles = document.getElementsByClassName("collapsible");
-    const iframes = document.getElementsByClassName("iframe");
-
-    const isInputEmpty = input === "";
-
-    for (let i = 0; i < collapsibles.length; i++) {
-        const rows = collapsibles[i].nextElementSibling.querySelectorAll("table tr");
-        let found = false;
-        for (let j = 0; j < rows.length; j++) {
-            const row = rows[j];
-            let phoneNumberFound = false;
-            const tds = row.querySelectorAll("td");
-            for (let k = 0; k < tds.length; k++) {
-                const tdText = tds[k].textContent.trim().toLowerCase();
-                if (tdText.startsWith(input)) {
-                    phoneNumberFound = true;
-                    break;
-                }
-            }
-            if (!isInputEmpty && phoneNumberFound) {
-                row.classList.add("highlight");
-                found = true;
-            } else {
-                row.classList.remove("highlight");
-            }
-        }
-
-        if (isInputEmpty) {
-            collapsibles[i].classList.remove("active");
-            collapsibles[i].nextElementSibling.style.maxHeight = null;
-            collapsibles[i].style.display = "block";
-        } else {
-            if (found) {
-                collapsibles[i].classList.add("active");
-                collapsibles[i].nextElementSibling.style.maxHeight = collapsibles[i].nextElementSibling.scrollHeight + "px";
-                collapsibles[i].style.display = "block";
-            } else {
-                collapsibles[i].classList.remove("active");
-                collapsibles[i].nextElementSibling.style.maxHeight = null;
-                collapsibles[i].style.display = "none";
-                iframes[i].style.display = "none";
-            }
-        }
-    }
-}
-
 document.getElementById('chapterList').addEventListener('click', (event) => {
     const target = event.target;
     if (target.tagName === 'A' && !readingChapter) {  
