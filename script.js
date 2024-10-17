@@ -95,10 +95,11 @@ const chapters = {
                //'Page 29',
                //'Page 30',
             ]
-        },
+        },*/ 
         4: {
             images: [
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2031.png',
+                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2031.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2032.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2033.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2034.png',
@@ -111,9 +112,10 @@ const chapters = {
 
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Placeholder.png',
             ],
-             altTexts = [
-                  'Page 31',
+             altTexts: [
+                  'Character 2',
                   'Placeholder',
+                //'Page 31',
                 //'Page 32',
                 //'Page 33',
                 //'Page 34',
@@ -125,7 +127,7 @@ const chapters = {
                 //'Page 40',
             ]
         },
-        5: {
+        /* 5: {
             images: [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2041.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2042.png',
@@ -140,7 +142,7 @@ const chapters = {
 
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Placeholder.png',
             ],
-             altTexts = [
+             altTexts: [
                 'Page 41',
                 'Placeholder',
                 //'Page 42',
@@ -210,7 +212,6 @@ async function loadImageSequentially(src, alt) {
         img.onerror = reject;
     });
 }
-
 
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
