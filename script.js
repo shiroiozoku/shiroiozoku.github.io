@@ -47,7 +47,7 @@ const chapters = {
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2016.png',
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2017.png',
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2018.png',
-          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2019.png',
+            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2019.png',
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2020.png',
         ],
         altTexts: [
@@ -59,7 +59,7 @@ const chapters = {
             'Page 16',
             'Page 17',
             'Page 18',
-          //'Page 19',
+            'Page 19',
             'Page 20',
         ]
     },
