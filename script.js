@@ -63,7 +63,7 @@ const chapters = {
             'Page 20',
         ]
     },
-/*  3: {
+    3: {
         images: [
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2021.png',
           //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2022.png',
@@ -76,12 +76,12 @@ const chapters = {
           //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2029.png',
           //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2030.png',
 
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Placeholder.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Placeholder.png',
                 
             ],
              altTexts: [
                  'Page 21',
-                 'Placeholder',
+               //'Placeholder',
                //'Page 22',
                //'Page 23',
                //'Page 24',
