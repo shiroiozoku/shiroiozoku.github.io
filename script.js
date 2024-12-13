@@ -92,7 +92,7 @@ const chapters = {
                //'Page 29',
                //'Page 30',
             ]
-        },*/ 
+        },
         4: {
             images: [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png',
