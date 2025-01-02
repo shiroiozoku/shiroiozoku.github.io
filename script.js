@@ -65,14 +65,14 @@ const chapters = {
     },
     3: {
         images: [
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2021.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2022.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2023.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2024.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2025.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2026.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2027.png',
-            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2028.png'
+            'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2021.png'
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2022.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2023.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2024.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2025.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2026.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2027.png',
+          //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2028.png'
           //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2029.png',
           //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2030.png',
 
@@ -221,10 +221,6 @@ async function loadChapterPages(chapterNumber) {
         link.classList.add('not-clickable');
     });
     hideOtherChapters(chapterNumber);
-
-    document.querySelectorAll('.collapsible').forEach(coll => {
-        coll.style.display = 'none';
-    });
 
     try {
         const totalImages = chapterData.images.length;
