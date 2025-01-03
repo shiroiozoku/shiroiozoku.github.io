@@ -172,11 +172,12 @@ img {
     transition: ease-in 0.2s;
     box-shadow: none;
     border: none;
-    width: 66%;
     position: sticky!important;
     top: 80px;
     max-width: 1010px;
     font-family: 'Manga Font', Arial, sans-serif;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .collapsible:before, .collapsible:after {
@@ -207,30 +208,6 @@ img {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #222;
-}
-
-@media (max-width: 600px) {
-    .collapsible {
-        padding: 14px;
-        width: 100%;
-    }
-
-    .collapsible:before, .collapsible:after {
-        font-size: 20px;
-        width: 20px;
-    }
-}
-
-@media (max-width: 400px) {
-    .collapsible {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .collapsible:before, .collapsible:after {
-        font-size: 18px;
-        width: 18px;
-    }
 }
 
 .comment-box {
