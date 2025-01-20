@@ -80,8 +80,8 @@ const chapters = {
                 
             ],
              altTexts: [
-                 'Page 21'
-                 'Page 22',
+                 'Page 21',
+                 'Page 22'
                //'Page 23',
                //'Page 24',
                //'Page 25',
