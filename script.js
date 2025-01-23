@@ -78,7 +78,7 @@ const chapters = {
             ],
              altTexts: [
                  'Page 21',
-                 'Page 22'
+                 'Page 22',
                  'Page 23',
                  'Page 24',
                  'Page 25',
@@ -104,7 +104,7 @@ const chapters = {
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2040.png',
             ],
              altTexts: [
-                  'Character 2',
+                  'Character 2'
                 //'Page 31',
                 //'Page 32',
                 //'Page 33',
