@@ -75,6 +75,7 @@ const chapters = {
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2028.png',
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2029.png',
             'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%203/Page%2030.png'
+                
             ],
              altTexts: [
                  'Page 21',
@@ -92,7 +93,7 @@ const chapters = {
         4: {
             images: [
                 'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png'
-                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2031.png',
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2031.png'
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2032.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2033.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2034.png',
@@ -102,10 +103,12 @@ const chapters = {
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2038.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2039.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2040.png',
+
+
             ],
              altTexts: [
                   'Character 2'
-                //'Page 31',
+                //'Page 31'
                 //'Page 32',
                 //'Page 33',
                 //'Page 34',
@@ -114,12 +117,12 @@ const chapters = {
                 //'Page 37',
                 //'Page 38',
                 //'Page 39',
-                //'Page 40'
+                //'Page 40',
             ]
         },
         /* 5: {
             images: [
-                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2041.png',
+                'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2041.png'
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2042.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2043.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2044.png',
@@ -128,10 +131,11 @@ const chapters = {
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2047.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2048.png',
                 //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2049.png',
-                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2050.png'
+                //'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%205/Page%2050.png',
+
             ],
              altTexts: [
-                'Page 41',
+                'Page 41'
                 //'Page 42',
                 //'Page 43',
                 //'Page 44',
@@ -174,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 });
 
-
 document.getElementById('chapterList').addEventListener('click', (event) => {
     const target = event.target;
     if (target.tagName === 'A' && !readingChapter) {  
@@ -196,7 +199,13 @@ async function loadImageSequentially(src, alt) {
         img.src = src;
         img.alt = alt;
         img.onload = () => resolve(img);
-        img.onerror = reject;
+        img.onerror = () => {
+            console.error(`Failed to load image: ${src}`);
+            const errorPlaceholder = document.createElement('div');
+            errorPlaceholder.textContent = `Image not available: ${alt}`;
+            errorPlaceholder.classList.add('imageError');
+            resolve(errorPlaceholder);
+        };
     });
 }
 
@@ -229,10 +238,9 @@ async function loadChapterPages(chapterNumber) {
                 mangaPagesDiv.appendChild(createPageSeparator());
             }
         }
-
     } catch (error) {
         console.error('Error loading pages:', error);
-    }
+    } 
 }
 
 function hideOtherChapters(exceptChapterNumber) {
