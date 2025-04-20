@@ -1,9 +1,5 @@
 let readingChapter = false;
 
-document.getElementById('homeLink').addEventListener('click', () => {
-    window.location.href = "";
-});
-
 const chapters = {
     1: {
         images: [
