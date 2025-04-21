@@ -85,58 +85,41 @@ async function loadChapterPages(chapterNumber) {
     document.querySelectorAll('#chapterList a').forEach(link => {
         link.classList.add('not-clickable');
     });
+
     hideOtherChapters(chapterNumber);
+
+    const observer = new IntersectionObserver(async (entries, obs) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                const container = entry.target;
+                const src = container.dataset.src;
+                const alt = container.dataset.alt;
+    
+                const img = await loadImageSequentially(src, alt);
+                container.replaceWith(img);
+                obs.unobserve(container);
+            }
+        }
+    }, {
+        rootMargin: '1500px 0px', 
+        threshold: 0 
+    });
 
     try {
         const totalImages = chapterData.images.length;
 
-        function createPageSeparator() {
-            const separator = document.createElement('div');
-            separator.classList.add('pageSeparator');
-            return separator;
-        }
-
-        const firstImage = await loadImageSequentially(chapterData.images[0], chapterData.altTexts[0]);
-        mangaPagesDiv.appendChild(firstImage);
-
-        if (totalImages > 1) {
-            mangaPagesDiv.appendChild(createPageSeparator());
-        }
-
-        const observer = new IntersectionObserver(async (entries, obs) => {
-            for (const entry of entries) {
-                if (entry.isIntersecting) {
-                    const container = entry.target;
-                    const src = container.dataset.src;
-                    const alt = container.dataset.alt;
-
-                    const img = await loadImageSequentially(src, alt);
-                    container.replaceWith(img);
-                    obs.unobserve(container);
-                }
-            }
-        }, {
-            rootMargin: '1000px 0px',
-            threshold: 0.01
-        });
-
-        for (let i = 1; i < totalImages; i++) {
-            const placeholder = document.createElement('div');
-            placeholder.classList.add('imagePlaceholder');
-            placeholder.dataset.src = chapterData.images[i];
-            placeholder.dataset.alt = chapterData.altTexts[i];
-
-            mangaPagesDiv.appendChild(placeholder);
+        for (let i = 0; i < totalImages; i++) {
+            const container = createLazyImageContainer(chapterData.images[i], chapterData.altTexts[i]);
+            mangaPagesDiv.appendChild(container);
+            observer.observe(container);
 
             if (i < totalImages - 1) {
                 mangaPagesDiv.appendChild(createPageSeparator());
             }
-
-            observer.observe(placeholder);
         }
     } catch (error) {
         console.error('Error loading pages:', error);
-    }
+    } 
 }
 
 function hideOtherChapters(exceptChapterNumber) {
