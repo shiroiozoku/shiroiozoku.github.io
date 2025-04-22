@@ -53,7 +53,8 @@ async function loadImageSequentially(src, alt) {
         img.onerror = () => {
             console.error(`Failed to load image: ${src}`);
             const errorPlaceholder = document.createElement('div');
-            errorPlaceholder.textContent = `Image not available: ${alt}`;
+            errorPlaceholder.textContent = `${alt} not available`;
+            errorPlaceholder.style.color = 'white';
             errorPlaceholder.classList.add('imageError');
             resolve(errorPlaceholder);
         };
@@ -80,7 +81,11 @@ async function loadChapterPages(chapterNumber) {
 
     const chapterData = chapters[chapterNumber];
     const mangaPagesDiv = document.getElementById('chapterPages');
-    mangaPagesDiv.innerHTML = '';
+
+    // Clear previous content efficiently
+    while (mangaPagesDiv.firstChild) {
+        mangaPagesDiv.removeChild(mangaPagesDiv.firstChild);
+    }
 
     document.querySelectorAll('#chapterList a').forEach(link => {
         link.classList.add('not-clickable');
@@ -94,32 +99,41 @@ async function loadChapterPages(chapterNumber) {
                 const container = entry.target;
                 const src = container.dataset.src;
                 const alt = container.dataset.alt;
-    
+
                 const img = await loadImageSequentially(src, alt);
                 container.replaceWith(img);
                 obs.unobserve(container);
             }
         }
     }, {
-        rootMargin: '800px 0px', 
-        threshold: 0 
+        rootMargin: '800px 0px',
+        threshold: 0
     });
 
-    try {
-        const totalImages = chapterData.images.length;
+    const totalImages = chapterData.images.length;
+    let i = 0;
 
-        for (let i = 0; i < totalImages; i++) {
+    function loadNextBatch() {
+        const fragment = document.createDocumentFragment();
+
+        for (let batch = 0; batch < 3 && i < totalImages; batch++, i++) {
             const container = createLazyImageContainer(chapterData.images[i], chapterData.altTexts[i]);
-            mangaPagesDiv.appendChild(container);
+            fragment.appendChild(container);
             observer.observe(container);
 
             if (i < totalImages - 1) {
-                mangaPagesDiv.appendChild(createPageSeparator());
+                fragment.appendChild(createPageSeparator());
             }
         }
-    } catch (error) {
-        console.error('Error loading pages:', error);
-    } 
+
+        mangaPagesDiv.appendChild(fragment);
+
+        if (i < totalImages) {
+            requestIdleCallback(loadNextBatch);
+        }
+    }
+
+    requestIdleCallback(loadNextBatch);
 }
 
 function hideOtherChapters(exceptChapterNumber) {
