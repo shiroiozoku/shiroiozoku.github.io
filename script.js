@@ -101,7 +101,7 @@ async function loadChapterPages(chapterNumber) {
             }
         }
     }, {
-        rootMargin: '1500px 0px', 
+        rootMargin: '800px 0px', 
         threshold: 0 
     });
 
