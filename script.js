@@ -1,5 +1,18 @@
 let readingChapter = false;
 
+const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+
+function updateTitle() {
+    const homeLink = document.getElementById("homeLink");
+    if (readingChapter) {
+        homeLink.innerHTML = `<a href="/" id="chapterLink">Chapter List</a>`;
+    } else {
+        homeLink.textContent = "Shiroi Ozoku";
+    }
+}
+
+if (isHomePage) updateTitle();
+
 import { chapters } from './pages.js';
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -78,11 +91,11 @@ function createPageSeparator() {
 
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
+    updateTitle(); // update title after readingChapter is true
 
     const chapterData = chapters[chapterNumber];
     const mangaPagesDiv = document.getElementById('chapterPages');
 
-    // Clear previous content efficiently
     while (mangaPagesDiv.firstChild) {
         mangaPagesDiv.removeChild(mangaPagesDiv.firstChild);
     }
