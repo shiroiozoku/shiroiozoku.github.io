@@ -212,6 +212,15 @@ img {
     height: 326px;
 }
 
+img.fade-in {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+img.fade-in.loaded {
+    opacity: 1;
+}
+
 .imagePlaceholder {
     max-width: 1000px;
     width: 100%;

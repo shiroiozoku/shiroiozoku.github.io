@@ -15,7 +15,7 @@ if (isHomePage) updateTitle();
 
 import { chapters } from './pages.js';
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function() {
     const coll = document.getElementsByClassName("collapsible");
 
     for (let i = 0; i < coll.length; i++) {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 content.style.maxHeight = content.scrollHeight + "px";
                 this.textContent = "Hide Comments";
             }
-        });
+        }, { passive: true });
     }
 });
 
@@ -56,13 +56,27 @@ document.getElementById('chapterList').addEventListener('click', (event) => {
     }
 });
 
-async function loadImageSequentially(src, alt) {
-    return new Promise((resolve, reject) => {
+const imageCache = new Map();
+
+function loadImageSequentially(src, alt) {
+    if (imageCache.has(src)) return Promise.resolve(imageCache.get(src));
+
+    return new Promise((resolve) => {
         const img = new Image();
         img.width = 1000;
         img.src = src;
         img.alt = alt;
-        img.onload = () => resolve(img);
+
+        img.onload = () => {
+            img.decode().then(() => {
+                imageCache.set(src, img);
+                resolve(img);
+            }).catch(() => {
+                imageCache.set(src, img);
+                resolve(img);
+            });
+        };
+
         img.onerror = () => {
             console.error(`Failed to load image: ${src}`);
             const errorPlaceholder = document.createElement('div');
@@ -89,9 +103,17 @@ function createPageSeparator() {
     return separator;
 }
 
+function runWhenIdle(fn) {
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(fn);
+    } else {
+        setTimeout(fn, 200);
+    }
+}
+
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
-    updateTitle(); // update title after readingChapter is true
+    updateTitle();
 
     const chapterData = chapters[chapterNumber];
     const mangaPagesDiv = document.getElementById('chapterPages');
@@ -106,6 +128,17 @@ async function loadChapterPages(chapterNumber) {
 
     hideOtherChapters(chapterNumber);
 
+    const totalImages = chapterData.images.length;
+
+    const firstImage = await loadImageSequentially(chapterData.images[0], chapterData.altTexts[0]);
+    mangaPagesDiv.appendChild(firstImage);
+    if (totalImages > 1) {
+        mangaPagesDiv.appendChild(createPageSeparator());
+    }
+
+    let i = 1;
+
+    const isFastConnection = navigator.connection?.effectiveType?.includes('4g');
     const observer = new IntersectionObserver(async (entries, obs) => {
         for (const entry of entries) {
             if (entry.isIntersecting) {
@@ -119,12 +152,9 @@ async function loadChapterPages(chapterNumber) {
             }
         }
     }, {
-        rootMargin: '800px 0px',
+        rootMargin: isFastConnection ? '1000px 0px' : '400px 0px',
         threshold: 0
     });
-
-    const totalImages = chapterData.images.length;
-    let i = 0;
 
     function loadNextBatch() {
         const fragment = document.createDocumentFragment();
@@ -142,11 +172,11 @@ async function loadChapterPages(chapterNumber) {
         mangaPagesDiv.appendChild(fragment);
 
         if (i < totalImages) {
-            requestIdleCallback(loadNextBatch);
+            runWhenIdle(loadNextBatch);
         }
     }
 
-    requestIdleCallback(loadNextBatch);
+    runWhenIdle(loadNextBatch);
 }
 
 function hideOtherChapters(exceptChapterNumber) {
