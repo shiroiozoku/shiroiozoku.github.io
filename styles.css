@@ -31,7 +31,8 @@ header {
     padding: 10px 0 10px 0;
     position: sticky;
     top: 0;
-    font-size:large;
+    font-size: large;
+    z-index: 9999;
 }
 
 h1 {
