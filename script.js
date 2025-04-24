@@ -1,54 +1,56 @@
 let readingChapter = false;
 
+const SHOW_COMMENTS = 'Show Comments';
+const HIDE_COMMENTS = 'Hide Comments';
+const CHAPTER_LIST_TEXT = 'Chapter List';
+const TITLE_TEXT = 'Shiroi Ozoku';
+
 const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+const imageCache = new WeakMap();
+
+import { chapters } from './pages.js';
 
 function updateTitle() {
     const homeLink = document.getElementById("homeLink");
     if (readingChapter) {
-        homeLink.innerHTML = `<a href="/" id="chapterLink">Chapter List</a>`;
+        homeLink.innerHTML = `<a href="/" id="chapterLink">${CHAPTER_LIST_TEXT}</a>`;
     } else {
-        homeLink.textContent = "Shiroi Ozoku";
+        homeLink.textContent = TITLE_TEXT;
     }
 }
 
 if (isHomePage) updateTitle();
 
-import { chapters } from './pages.js';
+document.addEventListener("click", function (e) {
+    const coll = e.target.closest('.collapsible');
+    if (!coll) return;
 
-document.addEventListener("DOMContentLoaded", function() {
-    const coll = document.getElementsByClassName("collapsible");
+    const content = coll.nextElementSibling;
 
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            const content = this.nextElementSibling;
-            const otherCollapsibles = document.querySelectorAll('.collapsible.active');
-            for (let j = 0; j < otherCollapsibles.length; j++) {
-                const otherContent = otherCollapsibles[j].nextElementSibling;
-                if (otherCollapsibles[j] !== this && otherContent.style.maxHeight) {
-                    otherCollapsibles[j].classList.remove("active");
-                    otherContent.style.maxHeight = null;
-                    otherCollapsibles[j].textContent = "Show Comments";
-                }
-            }
+    document.querySelectorAll('.collapsible.active').forEach(other => {
+        if (other !== coll) {
+            other.classList.remove('active');
+            other.nextElementSibling.style.maxHeight = null;
+            other.textContent = SHOW_COMMENTS;
+        }
+    });
 
-            this.classList.toggle("active");
-            if (content.style.maxHeight){
-                content.style.maxHeight = null;
-                this.textContent = "Show Comments";
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                this.textContent = "Hide Comments";
-            }
-        }, { passive: true });
+    coll.classList.toggle('active');
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        coll.textContent = SHOW_COMMENTS;
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        coll.textContent = HIDE_COMMENTS;
     }
-});
+}, { passive: true });
 
-document.getElementById('chapterList').addEventListener('click', (event) => {
+document.getElementById('chapterList').addEventListener('click', async (event) => {
     const target = event.target;
-    if (target.tagName === 'A' && !readingChapter) {  
+    if (target.tagName === 'A' && !readingChapter) {
         event.preventDefault();
         const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
-        if (chapters[chapterNumber]) {  
+        if (chapters[chapterNumber]) {
             loadChapterPages(chapterNumber);
         } else {
             alert(`Chapter ${chapterNumber} has not been released yet.`);
@@ -56,10 +58,9 @@ document.getElementById('chapterList').addEventListener('click', (event) => {
     }
 });
 
-const imageCache = new Map();
-
 function loadImageSequentially(src, alt) {
-    if (imageCache.has(src)) return Promise.resolve(imageCache.get(src));
+    const key = { src };
+    if (imageCache.has(key)) return Promise.resolve(imageCache.get(key));
 
     return new Promise((resolve) => {
         const img = new Image();
@@ -69,10 +70,10 @@ function loadImageSequentially(src, alt) {
 
         img.onload = () => {
             img.decode().then(() => {
-                imageCache.set(src, img);
+                imageCache.set(key, img);
                 resolve(img);
             }).catch(() => {
-                imageCache.set(src, img);
+                imageCache.set(key, img);
                 resolve(img);
             });
         };
@@ -91,7 +92,7 @@ function loadImageSequentially(src, alt) {
 function createLazyImageContainer(src, alt) {
     const placeholder = document.createElement('div');
     placeholder.classList.add('imagePlaceholder');
-    placeholder.style.height = '1400px'; 
+    placeholder.style.height = '1400px';
     placeholder.dataset.src = src;
     placeholder.dataset.alt = alt;
     return placeholder;
@@ -117,10 +118,7 @@ async function loadChapterPages(chapterNumber) {
 
     const chapterData = chapters[chapterNumber];
     const mangaPagesDiv = document.getElementById('chapterPages');
-
-    while (mangaPagesDiv.firstChild) {
-        mangaPagesDiv.removeChild(mangaPagesDiv.firstChild);
-    }
+    mangaPagesDiv.innerHTML = '';
 
     document.querySelectorAll('#chapterList a').forEach(link => {
         link.classList.add('not-clickable');
@@ -129,12 +127,16 @@ async function loadChapterPages(chapterNumber) {
     hideOtherChapters(chapterNumber);
 
     const totalImages = chapterData.images.length;
+    const fragment = document.createDocumentFragment();
 
     const firstImage = await loadImageSequentially(chapterData.images[0], chapterData.altTexts[0]);
-    mangaPagesDiv.appendChild(firstImage);
+    fragment.appendChild(firstImage);
+
     if (totalImages > 1) {
-        mangaPagesDiv.appendChild(createPageSeparator());
+        fragment.appendChild(createPageSeparator());
     }
+
+    mangaPagesDiv.appendChild(fragment);
 
     let i = 1;
 
@@ -152,24 +154,24 @@ async function loadChapterPages(chapterNumber) {
             }
         }
     }, {
-        rootMargin: isFastConnection ? '1000px 0px' : '400px 0px',
+        rootMargin: isFastConnection ? '1500px 0px' : '1000px 0px',
         threshold: 0
     });
 
     function loadNextBatch() {
-        const fragment = document.createDocumentFragment();
+        const batchFragment = document.createDocumentFragment();
 
         for (let batch = 0; batch < 3 && i < totalImages; batch++, i++) {
             const container = createLazyImageContainer(chapterData.images[i], chapterData.altTexts[i]);
-            fragment.appendChild(container);
+            batchFragment.appendChild(container);
             observer.observe(container);
 
             if (i < totalImages - 1) {
-                fragment.appendChild(createPageSeparator());
+                batchFragment.appendChild(createPageSeparator());
             }
         }
 
-        mangaPagesDiv.appendChild(fragment);
+        mangaPagesDiv.appendChild(batchFragment);
 
         if (i < totalImages) {
             runWhenIdle(loadNextBatch);
@@ -177,6 +179,12 @@ async function loadChapterPages(chapterNumber) {
     }
 
     runWhenIdle(loadNextBatch);
+
+    const nextChapter = chapters[chapterNumber + 1];
+    if (nextChapter?.images?.[0]) {
+        const preloadImg = new Image();
+        preloadImg.src = nextChapter.images[0];
+    }
 }
 
 function hideOtherChapters(exceptChapterNumber) {

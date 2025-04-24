@@ -10,8 +10,13 @@
 }
 
 html {
+    -webkit-tap-highlight-color: transparent; 
+    -moz-tap-highlight-color: transparent;    
+    -ms-touch-action: manipulation;           
+    -webkit-touch-callout: none;
+    touch-action: manipulation; 
     scroll-behavior: smooth;
-    font-family: 'Manga Font', Arial, sans-serif;
+    font-family: 'Manga Font', Arial, sans-serif; 
 }
 
 @font-face {
@@ -76,19 +81,25 @@ nav #chapterList a {
     align-items: center;
 }
 
-nav #chapterList a:hover:not(.not-clickable) {
+nav #chapterList a:hover:not(.not-clickable),
+nav #chapterList a:not(.not-clickable):active,
+nav #chapterList a:not(.not-clickable):focus {
     color: #555;
+    outline: none;
+   
 }
 
 nav #chapterList .not-clickable:hover {
     background-color: transparent;
     color: #222;
     border: none;
+    outline: none;
 }
 
 nav #chapterList .not-clickable {
     cursor: text;
     border: none;
+    outline: none;
 }
 
 #chapterPages {
@@ -124,6 +135,14 @@ img {
     height: auto;
 }
 
+img.fade-in {
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
+}
+
+img.fade-in.loaded {
+    opacity: 1;
+}
 .not-clickable {
     cursor: text;
 }
@@ -168,12 +187,19 @@ img {
     transition: ease-in 0.2s;
     box-shadow: none;
     border: none;
-    position: sticky!important;
+    position: sticky;
     top: calc(80px + 10px);
     max-width: 1010px;
     font-family: 'Manga Font', Arial, sans-serif;
-    margin: 0 auto;
     width: 100%;
+}
+
+.collapsible:active {
+    -webkit-tap-highlight-color: transparent; 
+    -moz-tap-highlight-color: transparent;    
+    -ms-touch-action: manipulation;           
+    -webkit-touch-callout: none;
+    touch-action: manipulation; 
 }
 
 .collapsible:before, .collapsible:after {
@@ -210,15 +236,6 @@ img {
     width: 100%;
     max-width: 1002px;
     height: 326px;
-}
-
-img.fade-in {
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
-}
-
-img.fade-in.loaded {
-    opacity: 1;
 }
 
 .imagePlaceholder {
