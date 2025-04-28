@@ -154,7 +154,7 @@ async function loadChapterPages(chapterNumber) {
             }
         }
     }, {
-        rootMargin: isFastConnection ? '1500px 0px' : '1000px 0px',
+        rootMargin: isFastConnection ? '1200px 0px' : '800px 0px',
         threshold: 0
     });
 
