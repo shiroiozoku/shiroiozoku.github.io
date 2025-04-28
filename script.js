@@ -1,4 +1,5 @@
 let readingChapter = false;
+let currentChapterNumber = null; // NEW
 
 const SHOW_COMMENTS = 'Show Comments';
 const HIDE_COMMENTS = 'Hide Comments';
@@ -21,6 +22,7 @@ function updateTitle() {
 
 if (isHomePage) updateTitle();
 
+// Handle collapsible comments
 document.addEventListener("click", function (e) {
     const coll = e.target.closest('.collapsible');
     if (!coll) return;
@@ -45,15 +47,28 @@ document.addEventListener("click", function (e) {
     }
 }, { passive: true });
 
+// Handle chapter links
 document.getElementById('chapterList').addEventListener('click', async (event) => {
     const target = event.target;
-    if (target.tagName === 'A' && !readingChapter) {
+    if (target.tagName === 'A') {
         event.preventDefault();
-        const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
-        if (chapters[chapterNumber]) {
-            loadChapterPages(chapterNumber);
+
+        if (readingChapter && currentChapterNumber !== null) {
+            // User is reading -> trigger download
+            const pdfUrl = `pdfs/chapter${currentChapterNumber}.pdf`; // Assuming PDFs are stored here
+            const a = document.createElement('a');
+            a.href = pdfUrl;
+            a.download = `Shiroi Ozoku Chapter ${currentChapterNumber}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         } else {
-            alert(`Chapter ${chapterNumber} has not been released yet.`);
+            const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
+            if (chapters[chapterNumber]) {
+                loadChapterPages(chapterNumber);
+            } else {
+                alert(`Chapter ${chapterNumber} has not been released yet.`);
+            }
         }
     }
 });
@@ -114,6 +129,7 @@ function runWhenIdle(fn) {
 
 async function loadChapterPages(chapterNumber) {
     readingChapter = true;
+    currentChapterNumber = chapterNumber;
     updateTitle();
 
     const chapterData = chapters[chapterNumber];
@@ -121,7 +137,8 @@ async function loadChapterPages(chapterNumber) {
     mangaPagesDiv.innerHTML = '';
 
     document.querySelectorAll('#chapterList a').forEach(link => {
-        link.classList.add('not-clickable');
+        link.classList.add('download-link');
+        link.textContent = `Download Chapter ${chapterNumber}`; // Change text
     });
 
     hideOtherChapters(chapterNumber);

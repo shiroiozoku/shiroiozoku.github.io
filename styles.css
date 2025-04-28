@@ -81,23 +81,23 @@ nav #chapterList a {
     align-items: center;
 }
 
-nav #chapterList a:hover:not(.not-clickable),
-nav #chapterList a:not(.not-clickable):active,
-nav #chapterList a:not(.not-clickable):focus {
+nav #chapterList a:hover:not(.download-link),
+nav #chapterList a:not(.download-link):active,
+nav #chapterList a:not(.download-link):focus {
     color: #555;
     outline: none;
    
 }
 
-nav #chapterList .not-clickable:hover {
+nav #chapterList .download-link:hover {
     background-color: transparent;
     color: #222;
     border: none;
     outline: none;
 }
 
-nav #chapterList .not-clickable {
-    cursor: text;
+nav #chapterList .download-link {
+    cursor: pointer;
     border: none;
     outline: none;
 }
@@ -143,7 +143,7 @@ img.fade-in {
 img.fade-in.loaded {
     opacity: 1;
 }
-.not-clickable {
+.download-link {
     cursor: text;
 }
 
