@@ -1,5 +1,5 @@
 let readingChapter = false;
-let currentChapterNumber = null; // NEW
+let currentChapterNumber = null; 
 
 const SHOW_COMMENTS = 'Show Comments';
 const HIDE_COMMENTS = 'Hide Comments';
@@ -22,7 +22,6 @@ function updateTitle() {
 
 if (isHomePage) updateTitle();
 
-// Handle collapsible comments
 document.addEventListener("click", function (e) {
     const coll = e.target.closest('.collapsible');
     if (!coll) return;
@@ -47,15 +46,13 @@ document.addEventListener("click", function (e) {
     }
 }, { passive: true });
 
-// Handle chapter links
 document.getElementById('chapterList').addEventListener('click', async (event) => {
     const target = event.target;
     if (target.tagName === 'A') {
         event.preventDefault();
 
         if (readingChapter && currentChapterNumber !== null) {
-            // User is reading -> trigger download
-            const pdfUrl = `pdfs/chapter${currentChapterNumber}.pdf`; // Assuming PDFs are stored here
+            const pdfUrl = `pdfs/chapter${currentChapterNumber}.pdf`; 
             const a = document.createElement('a');
             a.href = pdfUrl;
             a.download = `Shiroi Ozoku Chapter ${currentChapterNumber}.pdf`;
@@ -107,7 +104,6 @@ function loadImageSequentially(src, alt) {
 function createLazyImageContainer(src, alt) {
     const placeholder = document.createElement('div');
     placeholder.classList.add('imagePlaceholder');
-    placeholder.style.height = '1400px';
     placeholder.dataset.src = src;
     placeholder.dataset.alt = alt;
     return placeholder;
@@ -138,7 +134,7 @@ async function loadChapterPages(chapterNumber) {
 
     document.querySelectorAll('#chapterList a').forEach(link => {
         link.classList.add('download-link');
-        link.textContent = `Download Chapter ${chapterNumber}`; // Change text
+        link.textContent = `Download Chapter ${chapterNumber}`;
     });
 
     hideOtherChapters(chapterNumber);
