@@ -254,11 +254,12 @@ img.fade-in.loaded {
     display: block;
     width: 40px;
     height: 40px;
-    border: 6px solid #222;
+    border: 5px solid #222;
     border-top: 4px solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
+    will-change: transform;
+    }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
