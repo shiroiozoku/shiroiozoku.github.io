@@ -48,7 +48,7 @@ function loadImageSequentially(src, alt) {
         };
 
         img.onerror = () => {
-            console.error(`Failed to load image: ${src}`);
+            console.error(`Failed to load ${src}`);
             const errorPlaceholder = document.createElement('div');
             errorPlaceholder.textContent = `${alt} not available`;
             errorPlaceholder.style.color = 'white';
