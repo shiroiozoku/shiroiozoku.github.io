@@ -28,20 +28,35 @@ html {
 body {
     background-color: #222;
     text-align: center;
+    padding-top: 110px;
 }
 
 header {
     background-color: #222;
     color: white;
-    padding: 2px 0 6px 0;
-    position: sticky;
+    height: 60px;
+    line-height: 58px;
+    position: fixed;
     top: 0;
-    font-size: large;
+    width: 100%;
     z-index: 9999;
+    will-change: transform;
+    transform: translateZ(0);
+    box-sizing: border-box;
+}
+
+.header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
-    margin: 10px 0 10px 0;
+    margin: 0;
+    font-size: clamp(26px, 4vw, 36px);
 }
 
 h1 a {
@@ -86,7 +101,6 @@ nav #chapterList a:not(.download-link):active,
 nav #chapterList a:not(.download-link):focus {
     color: #555;
     outline: none;
-   
 }
 
 nav #chapterList .download-link:hover {
@@ -143,6 +157,7 @@ img.fade-in {
 img.fade-in.loaded {
     opacity: 1;
 }
+
 .download-link {
     cursor: text;
 }
@@ -188,7 +203,7 @@ img.fade-in.loaded {
     box-shadow: none;
     border: none;
     position: sticky;
-    top: calc(80px + 10px);
+    top: calc(60px + 10px); 
     max-width: 1010px;
     font-family: 'Manga Font', Arial, sans-serif;
     width: 100%;
@@ -259,7 +274,7 @@ img.fade-in.loaded {
     border-radius: 50%;
     animation: spin 1s linear infinite;
     will-change: transform;
-    }
+}
 
 @keyframes spin {
     to { transform: rotate(360deg); }
