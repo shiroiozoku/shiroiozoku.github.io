@@ -45,18 +45,9 @@ header {
     box-sizing: border-box;
 }
 
-.header-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 h1 {
     margin: 0;
-    font-size: clamp(26px, 4vw, 36px);
+    font-size: clamp(28px, 4vw, 36px);
 }
 
 h1 a {
