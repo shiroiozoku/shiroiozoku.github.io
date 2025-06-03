@@ -1,4 +1,4 @@
-**Shiroi Ozoku**
+# Shiroi Ozoku
 
 In modern-day Japan, a seemingly ordinary high schooler's life is turned upside down when a long-hidden family secret comes to light that will change his life forever.
 
