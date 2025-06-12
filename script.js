@@ -140,6 +140,11 @@ async function loadChapterPages(chapterNumber) {
         updateTitle();
         scrollToTop();
 
+        const navElements = document.getElementsByTagName('nav');
+        for (const nav of navElements) {
+            nav.style.borderBottom = '4px solid #222';
+        }
+
         const chapterData = chapters[chapterNumber];
         const mangaPagesDiv = document.getElementById('chapterPages');
         mangaPagesDiv.innerHTML = '';
