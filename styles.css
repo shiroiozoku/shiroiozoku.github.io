@@ -57,13 +57,13 @@ h1 a {
 
 nav {
     background-color: white;
-    padding: 10px;
     justify-content: center;
     align-items: center;
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
     overflow-x: auto;
+    box-sizing: border-box;
 }
 
 nav #chapterList {
@@ -80,7 +80,6 @@ nav #chapterList a {
     transition: 0.2s ease-out;
     display: flex;
     justify-content: space-evenly;
-    box-sizing: border-box;
     height: 48px;
     line-height: 20px;
     align-items: center;
@@ -101,6 +100,7 @@ nav #chapterList .download-link:hover {
 }
 
 nav #chapterList .download-link {
+    display: block;
     cursor: pointer;
     border: none;
     outline: none;
@@ -118,7 +118,7 @@ nav #chapterList .download-link {
     border-bottom: #222 solid 3px;
 }
 
-#chapter2, #chapter3, #chapter4 {
+#chapter2, #chapter3 {
     border-top: 3px solid #222;
 }
 
