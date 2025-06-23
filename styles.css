@@ -27,6 +27,8 @@ span.kofitext {
 a.kofi-button img.kofiimg {
     aspect-ratio: 285 / 229 !important;
     height: auto !important;
+    position: relative !important;
+    top: 1px !important;
 }
 
 html {
