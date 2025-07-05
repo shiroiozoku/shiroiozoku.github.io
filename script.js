@@ -142,7 +142,7 @@ async function loadChapterPages(chapterNumber) {
 
         const navElements = document.getElementsByTagName('nav');
         for (const nav of navElements) {
-            nav.style.borderBottom = '4px solid #222';
+            nav.style.borderBottom = '4px solid black';
         }
 
         const chapterData = chapters[chapterNumber];
