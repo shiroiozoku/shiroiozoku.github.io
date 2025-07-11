@@ -114,20 +114,20 @@ function setupChapterClickListener() {
             event.preventDefault();
 
             if (readingChapter && currentChapterNumber !== null) {
-                const pdfUrl = `pdfs/chapter${currentChapterNumber}.pdf`; 
+                const fileName = currentChapterNumber === 0
+                    ? 'Shiroi Ozoku All Chapters.pdf'
+                    : `Shiroi Ozoku Chapter ${currentChapterNumber}.pdf`;
+
+                const pdfUrl = `pdfs/chapter${currentChapterNumber}.pdf`;
                 const a = document.createElement('a');
                 a.href = pdfUrl;
-                a.download = `Shiroi Ozoku Chapter ${currentChapterNumber}.pdf`;
+                a.download = fileName;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
             } else {
                 const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
-                if (chapters[chapterNumber]) {
-                    loadChapterPages(chapterNumber);
-                } else {
-                    alert(`Chapter ${chapterNumber} has not been released yet.`);
-                }
+                loadChapterPages(chapterNumber);
             }
         }
     });
@@ -148,10 +148,11 @@ async function loadChapterPages(chapterNumber) {
         const chapterData = chapters[chapterNumber];
         const mangaPagesDiv = document.getElementById('chapterPages');
         mangaPagesDiv.innerHTML = '';
-
+        
+        const downloadText = Number(chapterNumber) === 0 ? 'Download All Chapters' : `Download Chapter ${chapterNumber}`;
         document.querySelectorAll('#chapterList a').forEach(link => {
             link.classList.add('download-link');
-            link.textContent = `Download Chapter ${chapterNumber}`;
+            link.textContent = downloadText;
         });
 
         hideOtherChapters(chapterNumber);
