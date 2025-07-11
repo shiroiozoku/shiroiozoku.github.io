@@ -234,7 +234,7 @@ img.fade-in.loaded {
     max-width: 1010px;
     font-family: 'Manga Font', Arial, sans-serif;
     width: 100%;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .collapsible:active {
