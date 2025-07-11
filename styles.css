@@ -112,7 +112,7 @@ nav #chapterList {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 nav #chapterList a {
