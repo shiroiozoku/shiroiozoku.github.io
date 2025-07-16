@@ -231,10 +231,9 @@ async function loadChapterPages(chapterNumber) {
 }
 
 const path = location.pathname;
-
 const validChapters = [1, 2, 3, 4];
 
-if (path === '/' || path === '/index.html' || path === '/404.html') {
+if (path === '/' || path === '/404.html') {
 } else if (path === '/allchapters') {
     history.replaceState({ chapter: 0 }, '', '/allchapters');
     loadChapterPages(0);
@@ -246,13 +245,12 @@ if (path === '/' || path === '/index.html' || path === '/404.html') {
             history.replaceState({ chapter: chapterNumber }, '', path);
             loadChapterPages(chapterNumber);
         } else {
-            window.location.href = '/index.html';
+            window.location.href = '/';
         }
     } else {
-        window.location.href = '/index.html';
+        window.location.href = '/';
     }
 }
-
 
 setupCollapsibleToggle();
 setupChapterClickListener();
