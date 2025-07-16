@@ -48,7 +48,11 @@ a.kofi-button img.kofiimg {
 
   span.kofitext {
   font-size: 12.5px !important;
-}
+  }
+  
+  body {
+    padding-top: 108.5px;
+  }
 }
 
 html {

@@ -17,7 +17,7 @@ function runWhenIdle(fn) {
 
 function hideOtherChapters(exceptChapterNumber) {
     document.querySelectorAll('#chapterList a').forEach(link => {
-        const chapterNumber = parseInt(link.id.replace('chapter', ''), 10);
+        const chapterNumber = parseInt(link.dataset.chapter, 10);
         if (chapterNumber !== exceptChapterNumber) {
             link.style.display = 'none';
         }
@@ -126,12 +126,25 @@ function setupChapterClickListener() {
                 a.click();
                 document.body.removeChild(a);
             } else {
-                const chapterNumber = parseInt(target.id.replace('chapter', ''), 10);
+                const chapterId = target.id;
+                const chapterNumber = chapterId === 'allchapters'
+                    ? 0
+                    : parseInt(chapterId.replace('chapter', ''), 10);
+
                 loadChapterPages(chapterNumber);
+                history.pushState({ chapter: chapterNumber }, '', chapterId === 'allchapters' ? '/allchapters' : `/chapter${chapterNumber}`);
             }
         }
     });
 }
+
+window.addEventListener('popstate', (event) => {
+    if (event.state?.chapter != null) {
+        loadChapterPages(event.state.chapter);
+    } else {
+        location.reload();
+    }
+});
 
 async function loadChapterPages(chapterNumber) {
     try {
@@ -148,7 +161,7 @@ async function loadChapterPages(chapterNumber) {
         const chapterData = chapters[chapterNumber];
         const mangaPagesDiv = document.getElementById('chapterPages');
         mangaPagesDiv.innerHTML = '';
-        
+
         const downloadText = Number(chapterNumber) === 0 ? 'Download All Chapters' : `Download Chapter ${chapterNumber}`;
         document.querySelectorAll('#chapterList a').forEach(link => {
             link.classList.add('download-link');
@@ -214,6 +227,20 @@ async function loadChapterPages(chapterNumber) {
         }
     } catch (error) {
         console.error('Error loading chapter:', error);
+    }
+}
+
+const path = location.pathname;
+
+if (path === '/allchapters') {
+    history.replaceState({ chapter: 0 }, '', '/allchapters');
+    loadChapterPages(0);
+} else {
+    const chapterMatch = path.match(/^\/chapter(\d+)$/);
+    if (chapterMatch) {
+        const chapterNumber = parseInt(chapterMatch[1], 10);
+        history.replaceState({ chapter: chapterNumber }, '', path);
+        loadChapterPages(chapterNumber);
     }
 }
 
