@@ -232,17 +232,27 @@ async function loadChapterPages(chapterNumber) {
 
 const path = location.pathname;
 
-if (path === '/allchapters') {
+const validChapters = [1, 2, 3, 4];
+
+if (path === '/' || path === '/index.html' || path === '/404.html') {
+} else if (path === '/allchapters') {
     history.replaceState({ chapter: 0 }, '', '/allchapters');
     loadChapterPages(0);
 } else {
     const chapterMatch = path.match(/^\/chapter(\d+)$/);
     if (chapterMatch) {
         const chapterNumber = parseInt(chapterMatch[1], 10);
-        history.replaceState({ chapter: chapterNumber }, '', path);
-        loadChapterPages(chapterNumber);
+        if (validChapters.includes(chapterNumber)) {
+            history.replaceState({ chapter: chapterNumber }, '', path);
+            loadChapterPages(chapterNumber);
+        } else {
+            window.location.href = '/index.html';
+        }
+    } else {
+        window.location.href = '/index.html';
     }
 }
+
 
 setupCollapsibleToggle();
 setupChapterClickListener();
