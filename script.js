@@ -233,7 +233,7 @@ async function loadChapterPages(chapterNumber) {
 const path = location.pathname;
 const validChapters = [1, 2, 3, 4];
 
-if (path === '/' || path === '/404.html') {
+if (path === '/') {
 } else if (path === '/allchapters') {
     history.replaceState({ chapter: 0 }, '', '/allchapters');
     loadChapterPages(0);
