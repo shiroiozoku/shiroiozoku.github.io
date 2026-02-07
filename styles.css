@@ -1,12 +1,15 @@
+:root {
+    --accent-color: #F84e10;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #1a1a1a;
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-}
-
-* {
-    margin: 0;
-    padding: 0;
+    font-family: 'Manga Font', Arial, sans-serif !important;
 }
 
 a.kofi-button {
@@ -16,12 +19,12 @@ a.kofi-button {
 
 a.kofi-button:hover {
     opacity: 1 !important;
-    background-color: #F84e10 !important;
+    background-color: #d33800 !important;
 }
 
 span.kofitext {
     font-family: 'Manga Font', Arial, sans-serif !important;
-    font-size: 13px !important;
+    font-size: 16px !important;
 }
 
 a.kofi-button img.kofiimg {
@@ -58,7 +61,13 @@ html {
     -webkit-touch-callout: none;
     touch-action: manipulation;
     scroll-behavior: smooth;
-    font-family: 'Manga Font', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 @font-face {
@@ -67,243 +76,245 @@ html {
     font-display: swap;
 }
 
-body {
-    background-color: black;
-    text-align: center;
-    padding-top: 109.5px;
-}
-
-header {
-    background-color: black;
-    color: white;
-    height: 60px;
-    line-height: 58px;
+.main-nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    z-index: 9999;
-    will-change: transform;
-    transform: translateZ(0);
-    box-sizing: border-box;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-bottom: 1px solid #333;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
-h1 {
-    margin: 0;
-    font-size: clamp(32px, 4vw, 38px);
-}
-
-h1 a {
-    text-decoration: none;
-    color: inherit;
-}
-
-nav {
-    background-color: white;
-    justify-content: center;
-    align-items: center;
-    max-width: 1000px;
-    width: 100%;
+.nav-content {
+    max-width: 1200px;
     margin: 0 auto;
-    overflow-x: auto;
-    box-sizing: border-box;
-}
-
-nav #chapterList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-}
-
-nav #chapterList a {
-    color: black;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 14px 20px;
-    transition: 0.2s ease-out;
+    height: 100%;
     display: flex;
-    justify-content: space-evenly;
-    height: 48px;
-    line-height: 20px;
+    justify-content: space-between;
     align-items: center;
+
 }
 
-nav #chapterList a:hover:not(.download-link),
-nav #chapterList a:not(.download-link):active,
-nav #chapterList a:not(.download-link):focus {
-    color: #444;
-    outline: none;
+#navLogo {
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
 }
 
-nav #chapterList .download-link:hover {
-    background-color: transparent;
-    color: black;
+.btn-container {
+    text-align: right;
+}
+
+a.kofi-button {
+    transform: scale(0.85);
+}
+
+.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 300px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.795)), url('https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2020.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.hero-overlay #startReadingBtn {
+    font-size: clamp(20px, 6vw, 30px);
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin: 10px 0 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.cta-button {
+    background-color: var(--accent-color);
+    color: white;
     border: none;
-    outline: none;
-}
-
-nav #chapterList .download-link {
-    display: block;
+    padding: 12px 32px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    border: none;
-    outline: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #d33800;
+}
+
+.info-section,
+.chapter-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.info-section p {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.chapter-card {
+    display: block;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    border: 3px solid transparent;
+    padding: 30px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s, border-color 0.2s;
+    margin-top: 5px;
+}
+
+.chapter-card:hover {
+    border: 3px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.chapter-card .chap-num {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.chapter-card .read-text {
+    font-size: 14px;
+    color: #888;
+    letter-spacing: 1px;
 }
 
 #chapterPages {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-}
-
-#chapter1,
-#chapter2,
-#chapter3,
-#chapter4 {
-    border-top: 4px solid black;
-}
-
-.pageSeparator {
-    width: 100%;
-    height: 4px;
-    background-color: black;
+    min-height: 50vh;
 }
 
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
-img.fade-in {
-    opacity: 0;
-    transition: opacity 0.1s ease-in;
+.reader-controls {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+
 }
 
-img.fade-in.loaded {
-    opacity: 1;
+.nav-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 0;
 }
 
-.download-link {
-    cursor: text;
+.nav-btn:hover {
+    background: #555;
 }
 
-@media only screen and (max-width: 1000px) {
-
-    nav,
-    iframe,
-    .collapsible {
-        width: 100%;
-    }
+.nav-btn.primary {
+    background: var(--accent-color);
 }
 
-@media only screen and (min-width: 768px) {
+.nav-btn.primary:hover {
+    background: #d33800;
+}
 
-    nav #chapterList,
-    iframe {
-        flex-grow: 1;
-        justify-content: center;
-    }
-
-    nav #chapterList .chapterDivider {
-        display: none;
-    }
-
-    nav #chapterList a {
-        margin: 0 20px;
-    }
-
-    nav #chapterList a:first-child {
-        margin-left: auto;
-    }
-
-    nav #chapterList a:last-child {
-        margin-right: auto;
-    }
+.comments-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 10px;
 }
 
 .collapsible {
-    background-color: black;
+    background-color: #333;
     color: white;
     cursor: pointer;
     padding: 16px;
+    width: 100%;
+    border: none;
     text-align: center;
     outline: none;
-    font-size: 18px;
-    transition: ease-in 0.2s;
-    box-shadow: none;
-    border: none;
-    position: sticky;
-    top: calc(60px + 10px);
-    max-width: 1010px;
-    font-family: 'Manga Font', Arial, sans-serif;
-    width: 100%;
+    font-size: 16px;
     font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: ease 0.2s;
 }
 
-.collapsible:active {
-    -webkit-tap-highlight-color: transparent;
-    -moz-tap-highlight-color: transparent;
-    -ms-touch-action: manipulation;
-    -webkit-touch-callout: none;
-    touch-action: manipulation;
-}
-
-.collapsible:before,
-.collapsible:after {
-    content: '\002B';
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.collapsible:before {
-    left: 10px;
-}
-
-.collapsible:after {
-    right: 10px;
-}
-
-.active:before,
-.active:after {
-    content: '\2212';
+.collapsible:hover {
+    background-color: #444;
+    text-shadow: 0 2px 10px rgb(0, 0, 0);
 }
 
 .content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: black;
 }
 
 .comment-box {
     width: 100%;
-    max-width: 1002px;
     height: 326px;
+    border-radius: 8px;
+    background: white;
 }
 
 .imagePlaceholder {
-    max-width: 1000px;
     width: 100%;
+    max-width: 1200px;
     aspect-ratio: 1654 / 2338;
-    background-color: white;
-    margin: 0 auto;
+    background: #111;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 4px;
 }
 
 .imagePlaceholder::before {
     content: '';
-    display: block;
     width: 40px;
     height: 40px;
-    border: 5px solid black;
-    border-top: 4px solid transparent;
+    border: 4px solid #333;
+    border-top: 4px solid var(--accent-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     will-change: transform;
