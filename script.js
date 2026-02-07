@@ -1,256 +1,174 @@
 import { chapters } from './pages.js';
 
-const imageCache = new Map();
-let readingChapter = false;
-let currentChapterNumber = null;
+const validChapters = [0, 1, 2, 3, 4, 5];
 
-const TITLE_TEXT = 'Shiroi Ozoku';
-const CHAPTER_LIST_TEXT = 'Chapter List';
+const homeView = document.getElementById('home-view');
+const readerView = document.getElementById('reader-view');
+const mangaPagesDiv = document.getElementById('chapterPages');
+const readerNavDiv = document.getElementById('readerNav');
+const chapterGrid = document.getElementById('chapterGrid');
+const startBtn = document.getElementById('startReadingBtn');
 
-function runWhenIdle(fn) {
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(fn);
+function toggleView(view) {
+    if (view === 'reader') {
+        if (homeView) homeView.style.display = 'none';
+        if (readerView) readerView.style.display = 'block';
+        window.scrollTo(0, 0);
     } else {
-        setTimeout(fn, 200);
+        if (homeView) homeView.style.display = 'block';
+        if (readerView) readerView.style.display = 'none';
+        mangaPagesDiv.innerHTML = '';
+        document.title = 'Shiroi Ozoku';
+        history.pushState(null, '', '/');
     }
 }
 
-function hideOtherChapters(exceptChapterNumber) {
-    document.querySelectorAll('#chapterList a').forEach(link => {
-        const chapterNumber = parseInt(link.dataset.chapter, 10);
-        if (chapterNumber !== exceptChapterNumber) {
-            link.style.display = 'none';
-        }
-    });
+function createPageElement(src, alt) {
+    const img = new Image();
+    img.src = src;
+    img.alt = alt || 'Page';
+    img.loading = 'lazy';
+    img.style.width = '100%';
+    img.style.maxWidth = '1200px';
+    img.style.display = 'block';
+    img.style.margin = '0 auto 5px';
+    return img;
 }
 
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function createPageSeparator(text) {
+    const sep = document.createElement('div');
+    sep.className = 'pageSeparator';
+    if (text) {
+        sep.textContent = text;
+        sep.style.textAlign = 'center';
+        sep.style.fontWeight = 'bold';
+        sep.style.margin = '20px 0';
+    }
+    return sep;
 }
 
-function loadImageSequentially(src, alt) {
-    if (imageCache.has(src)) return Promise.resolve(imageCache.get(src));
+function loadChapterPages(chapterNumber) {
+    mangaPagesDiv.innerHTML = '';
+    toggleView('reader');
 
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.width = 1000;
-        img.src = src;
-        img.alt = alt;
+    if (chapterNumber === 5) {
+        document.title = 'All Pages';
+        updateReaderNavigation(5);
+        for (let i = 1; i <= 4; i++) {
+            const chapter = chapters[i];
+            if (!chapter) continue;
 
-        img.onload = () => {
-            img.decode().then(() => {
-                imageCache.set(src, img);
-                resolve(img);
-            }).catch(() => {
-                imageCache.set(src, img);
-                resolve(img);
+            chapter.images.forEach((src, index) => {
+                mangaPagesDiv.appendChild(
+                    createPageElement(src, chapter.altTexts ? chapter.altTexts[index] : `Page ${index + 1}`)
+                );
             });
-        };
+        }
+        return;
+    }
 
-        img.onerror = () => {
-            console.error(`Failed to load ${src}`);
-            const errorPlaceholder = document.createElement('div');
-            errorPlaceholder.textContent = `${alt} not available`;
-            errorPlaceholder.style.color = 'white';
-            errorPlaceholder.classList.add('imageError');
-            resolve(errorPlaceholder);
-        };
+    const chapter = chapters[chapterNumber];
+    if (!chapter) {
+        console.error('Chapter not found:', chapterNumber);
+        toggleView('home');
+        return;
+    }
+
+    document.title = `Chapter ${chapterNumber}`;
+    updateReaderNavigation(chapterNumber);
+
+    chapter.images.forEach((src, index) => {
+        mangaPagesDiv.appendChild(
+            createPageElement(src, chapter.altTexts ? chapter.altTexts[index] : `Page ${index + 1}`)
+        );
+        mangaPagesDiv.appendChild(createPageSeparator());
     });
 }
 
-function createLazyImageContainer(src, alt) {
-    const placeholder = document.createElement('div');
-    placeholder.classList.add('imagePlaceholder');
-    placeholder.dataset.src = src;
-    placeholder.dataset.alt = alt;
-    return placeholder;
-}
+function updateReaderNavigation(currentChap) {
+    readerNavDiv.innerHTML = '';
 
-function createPageSeparator() {
-    const separator = document.createElement('div');
-    separator.classList.add('pageSeparator');
-    return separator;
-}
-
-function updateTitle() {
-    const homeLink = document.getElementById("homeLink");
-    if (readingChapter) {
-        homeLink.innerHTML = `<a href="/" id="chapterLink">${CHAPTER_LIST_TEXT}</a>`;
+    if (currentChap > 0 && currentChap < 5 && chapters[currentChap - 1]) {
+        const prev = document.createElement('button');
+        prev.className = 'nav-btn';
+        prev.textContent = '- Previous Chapter';
+        prev.onclick = () => {
+            history.pushState({ chapter: currentChap - 1 }, '', `/chapter${currentChap - 1}`);
+            loadChapterPages(currentChap - 1);
+        };
+        readerNavDiv.appendChild(prev);
     } else {
-        homeLink.textContent = TITLE_TEXT;
+        readerNavDiv.appendChild(document.createElement('div'));
+    }
+
+    if (chapters[currentChap + 1] && currentChap + 1 < 5) {
+        const next = document.createElement('button');
+        next.className = 'nav-btn primary';
+        next.textContent = 'Next Chapter +';
+        next.onclick = () => {
+            history.pushState({ chapter: currentChap + 1 }, '', `/chapter${currentChap + 1}`);
+            loadChapterPages(currentChap + 1);
+        };
+        readerNavDiv.appendChild(next);
+    } else {
+        const homeBtn = document.createElement('button');
+        homeBtn.className = 'nav-btn primary';
+        homeBtn.textContent = 'Return Home';
+        homeBtn.onclick = () => toggleView('home');
+        readerNavDiv.appendChild(homeBtn);
     }
 }
 
-function setupCollapsibleToggle() {
-    document.addEventListener("click", function (e) {
-        const coll = e.target.closest('.collapsible');
-        if (!coll) return;
+if (chapterGrid) {
+    chapterGrid.addEventListener('click', e => {
+        const card = e.target.closest('.chapter-card');
+        if (!card) return;
 
-        const content = coll.nextElementSibling;
-
-        document.querySelectorAll('.collapsible.active').forEach(other => {
-            if (other !== coll) {
-                other.classList.remove('active');
-                other.nextElementSibling.style.maxHeight = null;
-                other.textContent = 'Show Comments';
-            }
-        });
-
-        coll.classList.toggle('active');
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            coll.textContent = 'Show Comments';
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            coll.textContent = 'Hide Comments';
-        }
-    }, { passive: true });
-}
-
-function setupChapterClickListener() {
-    document.getElementById('chapterList').addEventListener('click', async (event) => {
-        const target = event.target;
-        if (target.tagName === 'A') {
-            event.preventDefault();
-
-            if (readingChapter && currentChapterNumber !== null) {
-                const fileName = currentChapterNumber === 0
-                    ? 'Shiroi Ozoku All Chapters.pdf'
-                    : `Shiroi Ozoku Chapter ${currentChapterNumber}.pdf`;
-
-                const pdfUrl = `pdfs/chapter${currentChapterNumber}.pdf`;
-                const a = document.createElement('a');
-                a.href = pdfUrl;
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            } else {
-                const chapterId = target.id;
-                const chapterNumber = chapterId === 'allchapters'
-                    ? 0
-                    : parseInt(chapterId.replace('chapter', ''), 10);
-
-                loadChapterPages(chapterNumber);
-                history.pushState({ chapter: chapterNumber }, '', chapterId === 'allchapters' ? '/allchapters' : `/chapter${chapterNumber}`);
-            }
+        e.preventDefault();
+        const num = parseInt(card.dataset.chapter, 10);
+        if (!isNaN(num)) {
+            history.pushState({ chapter: num }, '', `/chapter${num}`);
+            loadChapterPages(num);
         }
     });
 }
 
-window.addEventListener('popstate', (event) => {
-    if (event.state?.chapter != null) {
-        loadChapterPages(event.state.chapter);
+if (startBtn) {
+    startBtn.addEventListener('click', () => {
+        loadChapterPages(5);
+    });
+}
+
+window.addEventListener('popstate', e => {
+    if (e.state?.chapter !== undefined) {
+        loadChapterPages(e.state.chapter);
     } else {
-        location.reload();
+        toggleView('home');
     }
 });
 
-async function loadChapterPages(chapterNumber) {
-    try {
-        readingChapter = true;
-        currentChapterNumber = chapterNumber;
-        updateTitle();
-        scrollToTop();
-
-        const navElements = document.getElementsByTagName('nav');
-        for (const nav of navElements) {
-            nav.style.borderBottom = '4px solid black';
-        }
-
-        const chapterData = chapters[chapterNumber];
-        const mangaPagesDiv = document.getElementById('chapterPages');
-        mangaPagesDiv.innerHTML = '';
-
-        const downloadText = Number(chapterNumber) === 0 ? 'Download All Chapters' : `Download Chapter ${chapterNumber}`;
-        document.querySelectorAll('#chapterList a').forEach(link => {
-            link.classList.add('download-link');
-            link.textContent = downloadText;
-        });
-
-        hideOtherChapters(chapterNumber);
-
-        const totalImages = chapterData.images.length;
-        const fragment = document.createDocumentFragment();
-
-        const firstImage = await loadImageSequentially(chapterData.images[0], chapterData.altTexts[0]);
-        fragment.appendChild(firstImage);
-
-        if (totalImages > 1) {
-            fragment.appendChild(createPageSeparator());
-        }
-
-        mangaPagesDiv.appendChild(fragment);
-
-        let i = 1;
-        const isFastConnection = navigator.connection?.effectiveType?.includes('4g');
-
-        const observer = new IntersectionObserver(async (entries, obs) => {
-            for (const entry of entries) {
-                if (entry.isIntersecting) {
-                    const container = entry.target;
-                    const src = container.dataset.src;
-                    const alt = container.dataset.alt;
-                    const img = await loadImageSequentially(src, alt);
-                    container.replaceWith(img);
-                    obs.unobserve(container);
-                }
-            }
-        }, {
-            rootMargin: isFastConnection ? '1200px 0px' : '800px 0px',
-            threshold: 0
-        });
-
-        function loadNextBatch() {
-            const batchFragment = document.createDocumentFragment();
-
-            for (let batch = 0; batch < 3 && i < totalImages; batch++, i++) {
-                const container = createLazyImageContainer(chapterData.images[i], chapterData.altTexts[i]);
-                batchFragment.appendChild(container);
-                observer.observe(container);
-
-                if (i < totalImages - 1) {
-                    batchFragment.appendChild(createPageSeparator());
-                }
-            }
-
-            mangaPagesDiv.appendChild(batchFragment);
-            if (i < totalImages) runWhenIdle(loadNextBatch);
-        }
-
-        runWhenIdle(loadNextBatch);
-
-        const nextChapter = chapters[chapterNumber + 1];
-        if (nextChapter?.images?.[0]) {
-            const preloadImg = new Image();
-            preloadImg.src = nextChapter.images[0];
-        }
-    } catch (error) {
-        console.error('Error loading chapter:', error);
-    }
-}
-
-const path = location.pathname;
-const validChapters = [1, 2, 3, 4];
-
-if (path === '/') {
-} else if (path === '/allchapters') {
-    history.replaceState({ chapter: 0 }, '', '/allchapters');
-    loadChapterPages(0);
-} else {
-    const chapterMatch = path.match(/^\/chapter(\d+)$/);
-    if (chapterMatch) {
-        const chapterNumber = parseInt(chapterMatch[1], 10);
-        if (validChapters.includes(chapterNumber)) {
-            history.replaceState({ chapter: chapterNumber }, '', path);
-            loadChapterPages(chapterNumber);
-        } else {
-            window.location.href = '/';
-        }
+const match = location.pathname.match(/^\/chapter(\d+)$/);
+if (match) {
+    const num = parseInt(match[1], 10);
+    if (validChapters.includes(num)) {
+        loadChapterPages(num);
     } else {
-        window.location.href = '/';
+        history.replaceState(null, '', '/');
+        toggleView('home');
     }
 }
 
-setupCollapsibleToggle();
-setupChapterClickListener();
+const collapsible = document.querySelector('.collapsible');
+if (collapsible) {
+    collapsible.addEventListener('click', function () {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            this.textContent = 'Show Comments';
+        } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            this.textContent = 'Hide Comments';
+        }
+    });
+}
