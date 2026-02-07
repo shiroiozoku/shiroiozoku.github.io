@@ -1,57 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="In modern-day Japan, a seemingly ordinary high schooler's life is turned upside down when a long-hidden family secret comes to light that will change his life forever.">
-    <link rel="canonical" href="https://shiroiozoku.github.io">
     <title>Shiroi Ozoku</title>
-    <meta property="og:title" content="Shiroi Ozoku">
+
+    <meta name="description"
+        content="In modern-day Japan, a seemingly ordinary high schooler's life is turned upside down when a long-hidden family secret comes to light. Read Shiroi Ozoku online for free.">
+    <link rel="canonical" href="https://shiroiozoku.github.io">
+
+    <meta property="og:title" content="Shiroi Ozoku - Read Free Online">
     <meta property="og:description"
-        content="In modern-day Japan, a high schooler's world is shaken by a family secret that changes everything. Read the manga online for free.">
+        content="A dark family secret changes everything. Read the webcomic Shiroi Ozoku now.">
     <meta property="og:image"
         content="https://storage.ko-fi.com/cdn/useruploads/display/bcb553af-b9d5-4d47-8ed4-a9a556ce9c77_thumbnail.png">
     <meta property="og:url" content="https://shiroiozoku.github.io">
     <meta property="og:type" content="website">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Shiroi Ozoku">
     <meta name="twitter:description" content="A family secret. A new destiny. Read Shiroi Ozoku — a free online manga.">
     <meta name="twitter:image"
         content="https://storage.ko-fi.com/cdn/useruploads/display/bcb553af-b9d5-4d47-8ed4-a9a556ce9c77_thumbnail.png">
+
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="https://storage.ko-fi.com/cdn/useruploads/4022462e-b1fc-4bb3-b13d-03f117f6e77b_a218973c-abe4-4f9d-be7a-4149cdaa087c.png" type="image/png">
+    <link rel="icon"
+        href="https://storage.ko-fi.com/cdn/useruploads/4022462e-b1fc-4bb3-b13d-03f117f6e77b_a218973c-abe4-4f9d-be7a-4149cdaa087c.png"
+        type="image/png">
     <link rel="preload" href="manga.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 </head>
 
 <body>
-    <header>
-        <h1 id="homeLink">Shiroi Ozoku</h1>
-        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-        <script
-            type='text/javascript'>kofiwidget2.init('SUPPORT ME ON KO-FI', '#FF6433', 'A0A31DYBOK'); kofiwidget2.draw();</script>
-    </header>
-    <nav>
-        <div id="chapterNav">
-            <ul id="chapterList">
-                <li><a href="/allchapters" data-chapter="0" id="allchapters">Read All Chapters</a></li>
-                <li><a href="/chapter4" data-chapter="4" id="chapter4">Read Chapter 4</a></li>
-                <li><a href="/chapter3" data-chapter="3" id="chapter3">Read Chapter 3</a></li>
-                <li><a href="/chapter2" data-chapter="2" id="chapter2">Read Chapter 2</a></li>
-                <li><a href="/chapter1" data-chapter="1" id="chapter1">Read Chapter 1</a></li>
-            </ul>
+
+    <nav class="main-nav">
+        <div class="nav-content">
+            <a href="/" id="navLogo">Shiroi Ozoku</a>
+            <div class="nav-links">
+                <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+                <script
+                    type='text/javascript'>kofiwidget2.init('Support', '#FF6433', 'A0A31DYBOK'); kofiwidget2.draw();</script>
+            </div>
         </div>
     </nav>
+
     <main>
-        <div id="chapterPages"></div>
+        <div id="home-view">
+
+            <header class="hero">
+                <div class="hero-overlay">
+                    <button id="startReadingBtn" class="cta-button">Start Reading</button>
+                </div>
+            </header>
+            <section class="info-section">
+                <h2>The Story</h2>
+                <p>
+                    In modern-day Japan, a seemingly ordinary high schooler's life is turned upside down when a
+                    long-hidden family secret comes to light that will change his life forever.
+                </p>
+            </section>
+
+            <section class="chapter-section">
+                <h2>Chapters</h2>
+                <div class="chapter-grid" id="chapterGrid">
+                    <a href="/chapter4" class="chapter-card" data-chapter="4">
+                        <div class="card-content">
+                            <span class="chap-num">Chapter 4</span>
+                        </div>
+                    </a>
+                    <a href="/chapter3" class="chapter-card" data-chapter="3">
+                        <div class="card-content">
+                            <span class="chap-num">Chapter 3</span>
+                        </div>
+                    </a>
+                    <a href="/chapter2" class="chapter-card" data-chapter="2">
+                        <div class="card-content">
+                            <span class="chap-num">Chapter 2</span>
+                        </div>
+                    </a>
+                    <a href="/chapter1" class="chapter-card" data-chapter="1">
+                        <div class="card-content">
+                            <span class="chap-num">Chapter 1</span>
+                        </div>
+                    </a>
+                    <a href="/chapter0" class="chapter-card" data-chapter="0">
+                        <div class="card-content">
+                            <span class="chap-num">Chapter 0</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+        <div id="reader-view" style="display: none;">
+            <div id="chapterPages"></div>
+            <div class="reader-controls bottom-controls" id="readerNav">
+            </div>
+        </div>
     </main>
-    <button type="button" class="collapsible">Show Comments</button>
-    <div class="content">
-        <iframe src="https://www5.cbox.ws/box/?boxid=952057&boxtag=AcwfB0" title="Comments Section" class="comment-box"
-            allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"
-            loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals">
-        </iframe>
+    <div class="comments-wrapper">
+        <button type="button" class="collapsible">Show Comments</button>
+        <div class="content">
+            <iframe src="https://www5.cbox.ws/box/?boxid=952057&boxtag=AcwfB0" title="Comments Section"
+                class="comment-box" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0"
+                marginwidth="0" scrolling="auto" loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals">
+            </iframe>
+        </div>
     </div>
     <script type="module" src="script.js" defer></script>
 </body>
+
 </html>
