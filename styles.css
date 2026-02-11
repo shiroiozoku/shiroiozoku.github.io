@@ -70,6 +70,10 @@ body {
     color: var(--text-color);
 }
 
+main {
+    padding-top: 60px;
+}
+
 @font-face {
     font-family: 'Manga Font';
     src: url('manga.ttf') format('truetype');
@@ -99,7 +103,7 @@ body {
 }
 
 #navLogo {
-    font-size: 25px;
+    font-size: clamp(20px, 6vw, 30px);
     font-weight: bold;
     text-decoration: none;
     color: white;
@@ -126,7 +130,6 @@ a.kofi-button {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 40px;
 }
 
 .hero-overlay #startReadingBtn {

@@ -35,37 +35,9 @@ function createPageElement(src, alt) {
     return img;
 }
 
-function createPageSeparator(text) {
-    const sep = document.createElement('div');
-    sep.className = 'pageSeparator';
-    if (text) {
-        sep.textContent = text;
-        sep.style.textAlign = 'center';
-        sep.style.fontWeight = 'bold';
-        sep.style.margin = '20px 0';
-    }
-    return sep;
-}
-
 function loadChapterPages(chapterNumber) {
     mangaPagesDiv.innerHTML = '';
     toggleView('reader');
-
-    if (chapterNumber === 5) {
-        document.title = 'All Pages';
-        updateReaderNavigation(5);
-        for (let i = 1; i <= 4; i++) {
-            const chapter = chapters[i];
-            if (!chapter) continue;
-
-            chapter.images.forEach((src, index) => {
-                mangaPagesDiv.appendChild(
-                    createPageElement(src, chapter.altTexts ? chapter.altTexts[index] : `Page ${index + 1}`)
-                );
-            });
-        }
-        return;
-    }
 
     const chapter = chapters[chapterNumber];
     if (!chapter) {
@@ -74,16 +46,24 @@ function loadChapterPages(chapterNumber) {
         return;
     }
 
-    document.title = `Chapter ${chapterNumber}`;
+    if (chapterNumber === 5) { 
+        document.title = 'All Pages'; 
+    } else {    
+        document.title = `Chapter ${chapterNumber}`;
     updateReaderNavigation(chapterNumber);
+}
+
 
     chapter.images.forEach((src, index) => {
         mangaPagesDiv.appendChild(
-            createPageElement(src, chapter.altTexts ? chapter.altTexts[index] : `Page ${index + 1}`)
+            createPageElement(
+                src,
+                chapter.altTexts ? chapter.altTexts[index] : `Page ${index + 1}`
+            )
         );
-        mangaPagesDiv.appendChild(createPageSeparator());
     });
 }
+
 
 function updateReaderNavigation(currentChap) {
     readerNavDiv.innerHTML = '';
