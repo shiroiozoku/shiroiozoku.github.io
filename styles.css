@@ -1,5 +1,5 @@
 :root {
-    --accent-color: #F84e10;
+    --accent-color: #FF6433;
     --bg-color: #000000;
     --text-color: #ffffff;
     --card-bg: #1a1a1a;
@@ -120,11 +120,11 @@ a.kofi-button {
 
 .hero {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     min-height: 300px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.795)), url('https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%202/Page%2020.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.495)), url('My Biggest Supporter In Life.png');
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
