@@ -162,7 +162,7 @@ a.kofi-button {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    padding: 12px 32px;
+    padding: 8px 28px;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
