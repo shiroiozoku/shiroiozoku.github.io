@@ -131,6 +131,12 @@ a.kofi-button {
     text-align: center;
 }
 
+@media (max-width: 480px) {
+    .hero {
+        height: 50vh;
+    }
+}
+
 .hero-overlay #startReadingBtn {
     font-size: clamp(20px, 6vw, 25px);
     margin: 0;
