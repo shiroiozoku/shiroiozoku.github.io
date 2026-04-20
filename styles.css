@@ -245,7 +245,11 @@ img {
     display: flex;
     justify-content: space-between;
     padding: 0 12px;
+}
 
+.nav-container {
+    display: flex;
+    gap: 10px;
 }
 
 .nav-btn {
@@ -255,9 +259,11 @@ img {
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 4px;
+    border-radius:  4px 0 0 4px;
     text-decoration: none;
     margin: 0;
+    flex: 1;
+    text-align: center;
 }
 
 .nav-btn:hover {
@@ -266,6 +272,7 @@ img {
 
 .nav-btn.primary {
     background: var(--accent-color);
+    border-radius: 0 4px 4px 0;
 }
 
 .nav-btn.primary:hover {
@@ -274,7 +281,7 @@ img {
 
 .comments-wrapper {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 0 auto;
     padding: 0 10px;
 }
 
