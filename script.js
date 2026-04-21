@@ -71,7 +71,7 @@ function updateReaderNavigation(currentChap) {
     if (currentChap > 0 && currentChap < 5 && chapters[currentChap - 1]) {
         const prev = document.createElement('button');
         prev.className = 'nav-btn';
-        prev.textContent = '- Previous Chapter';
+        prev.textContent = '- Previous';
         prev.onclick = () => {
             history.pushState({ chapter: currentChap - 1 }, '', `/chapter${currentChap - 1}`);
             loadChapterPages(currentChap - 1);
@@ -84,7 +84,7 @@ function updateReaderNavigation(currentChap) {
     if (chapters[currentChap + 1] && currentChap + 1 < 5) {
         const next = document.createElement('button');
         next.className = 'nav-btn primary';
-        next.textContent = 'Next Chapter +';
+        next.textContent = 'Next +';
         next.onclick = () => {
             history.pushState({ chapter: currentChap + 1 }, '', `/chapter${currentChap + 1}`);
             loadChapterPages(currentChap + 1);
