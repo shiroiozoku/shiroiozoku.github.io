@@ -346,17 +346,19 @@ img {
 }
 
 .imagePlaceholder::before {
-    content: 'none';
+    content: '';
     width: 36px;
     height: 36px;
     border: 3px solid #333;
     border-top: 3px solid var(--accent-color);
     border-radius: 50%;
     animation: spin 0.9s linear infinite;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 .imagePlaceholder.loading::before {
-    content: '';
+    opacity: 1;
 }
 
 @keyframes spin {
