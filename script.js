@@ -24,18 +24,26 @@ function toggleView(view) {
 }
 
 function createPageElement(src, alt) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'imagePlaceholder';
+
     const img = new Image();
     img.src = src;
     img.alt = alt || 'Page';
-    img.loading = 'lazy';
-    img.style.width = '100%';
-    img.style.maxWidth = '1200px';
-    img.style.display = 'block';
-    img.style.margin = '0 auto 5px';
-    return img;
+    img.className = 'page-img';
+
+    img.onload = () => {
+        wrapper.innerHTML = '';
+        wrapper.appendChild(img);
+        requestAnimationFrame(() => {
+            img.classList.add('visible');
+        });
+    };
+
+    return { wrapper, img };
 }
 
-function loadChapterPages(chapterNumber) {
+async function loadChapterPages(chapterNumber) {
     mangaPagesDiv.innerHTML = '';
     toggleView('reader');
 
@@ -46,24 +54,27 @@ function loadChapterPages(chapterNumber) {
         return;
     }
 
-    if (chapterNumber === 5) { 
-        document.title = 'All Pages'; 
-    } else {    
-        document.title = `Chapter ${chapterNumber}`;
+    document.title = chapterNumber === 5 ? 'All Pages' : `Chapter ${chapterNumber}`;
     updateReaderNavigation(chapterNumber);
-}
 
-
-    chapter.images.forEach((src, index) => {
-        mangaPagesDiv.appendChild(
-            createPageElement(
-                src,
-                chapter.altTexts ? chapter.altTexts[index] : `Page ${index + 1}`
-            )
+    for (let i = 0; i < chapter.images.length; i++) {
+        const { wrapper, img } = createPageElement(
+            chapter.images[i],
+            chapter.altTexts ? chapter.altTexts[i] : `Page ${i + 1}`
         );
-    });
-}
 
+        mangaPagesDiv.appendChild(wrapper);
+
+        await new Promise(resolve => {
+            if (img.complete) {
+                resolve();
+            } else {
+                img.addEventListener('load', resolve, { once: true });
+                img.addEventListener('error', resolve, { once: true });
+            }
+        });
+    }
+}
 
 function updateReaderNavigation(currentChap) {
     readerNavDiv.innerHTML = '';
@@ -93,8 +104,13 @@ function updateReaderNavigation(currentChap) {
     } else {
         const homeBtn = document.createElement('button');
         homeBtn.className = 'nav-btn primary';
-        homeBtn.textContent = 'Return Home';
+        homeBtn.textContent = 'Home';
         homeBtn.onclick = () => toggleView('home');
+
+        if (currentChap === 5) {
+            homeBtn.style.borderRadius = '4px';
+        }
+
         readerNavDiv.appendChild(homeBtn);
     }
 }
