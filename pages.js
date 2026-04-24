@@ -154,8 +154,8 @@ export const chapters = {
       'Page 39',
       'Page 40'
     ]
-  } ,
-  5: {
+  },
+  8: {
     images: [
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Characters.png',
