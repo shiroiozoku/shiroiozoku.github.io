@@ -129,7 +129,6 @@ export const chapters = {
   },
   4: {
     images: [
-      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2031.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2032.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2033.png',
@@ -142,7 +141,6 @@ export const chapters = {
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2040.png'
     ],
     altTexts: [
-      'Characters 2',
       'Page 31',
       'Page 32',
       'Page 33',
@@ -155,6 +153,89 @@ export const chapters = {
       'Page 40'
     ]
   },
+  5: {
+    images: [
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2041.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2042.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2043.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2044.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2045.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2046.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2047.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2048.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2049.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2050.png'
+    ],
+    altTexts: [
+      'Page 41',
+      'Page 42',
+      'Page 43',
+      'Page 44',
+      'Page 45',
+      'Page 46',
+      'Page 47',
+      'Page 48',
+      'Page 49',
+      'Page 50'
+    ]
+  },
+  6: {
+    images: [
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2051.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2052.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2053.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2054.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2055.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2056.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2057.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2058.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2059.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2060.png'
+    ],
+    altTexts: [
+      'Characters 2',
+      'Page 51',
+      'Page 52',
+      'Page 53',
+      'Page 54',
+      'Page 55',
+      'Page 56',
+      'Page 57',
+      'Page 58',
+      'Page 59',
+      'Page 60'
+    ]
+  },
+  7: {
+    images: [
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2061.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2062.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2063.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2064.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2065.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2066.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2067.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2068.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2069.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Page%2070.png'
+    ],
+    altTexts: [
+      'Characters 2',
+      'Page 61',
+      'Page 62',
+      'Page 63',
+      'Page 64',
+      'Page 65',
+      'Page 66',
+      'Page 67',
+      'Page 68',
+      'Page 69',
+      'Page 70'
+    ]
+  },
+
+
   8: {
     images: [
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.png',
