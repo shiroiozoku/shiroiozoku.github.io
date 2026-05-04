@@ -181,7 +181,7 @@ export const chapters = {
   },
   6: {
     images: [
-      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%206/Characters%202.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%206/Page%2051.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%206/Page%2052.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%206/Page%2053.png',
@@ -239,7 +239,7 @@ export const chapters = {
     images: [
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Title.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Characters.png',
-      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%204/Characters%202.png',
+      'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%206/Characters%202.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/How%20to%20Read.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%201.png',
       'https://raw.githubusercontent.com/shiroiozoku/shiroiozoku.github.io/main/Chapter%201/Page%202.png',
