@@ -118,11 +118,11 @@ a.kofi-button {
 
 .hero {
     position: relative;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('My Biggest Supporter In Life.png');
+    height: 70vh;
+    background-image: url('Banner.png');
     background-size: contain;
-    background-color: #ffa9c6;
-    background-position: bottom center;
+    background-color: white;
+    background-position: center;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
@@ -180,10 +180,40 @@ a.kofi-button {
     text-align: center;
 }
 
-.info-section p {
-    max-width: 600px;
+/* Story So Far ONLY */
+
+.info-section .story-content {
+    max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
+}
+
+.info-section .story-chapter {
+    margin: 0 0 50px;
+}
+
+.info-section .story-chapter h3 {
+    font-size: 22px;
+    color: #ccc;
+    margin: 0 0 25px;
+    padding-bottom: 5px;
+    border-bottom: none;
+    text-align: center;
+}
+
+.info-section .story-content p {
+    max-width: none;
+    margin: 0 0 18px;
     line-height: 1.6;
+    color: #fff;
+    text-align: center;
+}
+
+.info-section .story-content strong {
+    color: var(--accent-color);
+}
+
+.info-section .story-content span {
     color: #ccc;
 }
 
