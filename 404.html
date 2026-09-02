@@ -4,23 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Shiroi Ozoku</title>
 
     <meta name="description"
-        content="In modern-day Japan, a seemingly ordinary high schooler's life is turned upside down when a hidden family secret comes to light. Read Shiroi Ozoku online for free.">
-    <link rel="canonical" href="https://shiroiozoku.github.io">
+        content="Shiroi Ozoku is a fantasy webcomic about Taisen Osoreru, a high school student who discovers that his family are royals from a parallel world and that he possesses magical powers.">
 
+    <link rel="canonical" href="https://shiroiozoku.github.io">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+    <meta property="og:type" content="article">
     <meta property="og:title" content="Shiroi Ozoku">
     <meta property="og:description"
-        content="A dark family secret changes everything. Read the webcomic Shiroi Ozoku now.">
-    <meta property="og:image" content="Banner.png">
+        content="Taisen Osoreru discovers that his family are royals from a parallel world and that he possesses magical powers.">
     <meta property="og:url" content="https://shiroiozoku.github.io">
-    <meta property="og:type" content="website">
+    <meta property="og:image" content="Banner.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Shiroi Ozoku">
-    <meta name="twitter:description" content="A family secret. A new destiny. Read Shiroi Ozoku — a free online manga.">
+    <meta name="twitter:description"
+        content="Taisen Osoreru discovers that his family are royals from a parallel world and that he possesses magical powers.">
     <meta name="twitter:image" content="Banner.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Shiroi Ozoku",
+        "url": "https://shiroiozoku.github.io",
+        "description": "Shiroi Ozoku is a fantasy webcomic about Taisen Osoreru, a high school student who discovers that his family are royals from a parallel world and that he possesses magic powers.",
+        "about": {
+            "@type": "CreativeWork",
+            "name": "Shiroi Ozoku",
+            "genre": "Fantasy"
+        },
+        "mainEntity": {
+            "@type": "CreativeWork",
+            "name": "Shiroi Ozoku",
+            "description": "Taisen Osoreru discovers that his family are royals from a parallel world and that he possesses magic powers."
+        }
+    }
+    </script>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icon.png" type="image/png">
@@ -41,7 +64,7 @@
     </nav>
 
     <main>
-        <div id="home-view">
+        <div id="home-view" data-nosnippet>
 
             <header class="hero">
                 <div class="hero-overlay">
@@ -52,52 +75,36 @@
 
             <section class="chapter-section">
                 <h2>Chapters</h2>
-                <div class="chapter-grid" id="chapterGrid">
-                    <a href="/chapter7" class="chapter-card" data-chapter="7">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 7</span>
-                        </div>
-                    </a>
-                    <a href="/chapter6" class="chapter-card" data-chapter="6">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 6</span>
-                        </div>
-                    </a>
-                    <a href="/chapter5" class="chapter-card" data-chapter="5">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 5</span>
-                        </div>
-                    </a>
-                    <a href="/chapter4" class="chapter-card" data-chapter="4">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 4</span>
-                        </div>
-                    </a>
-                    <a href="/chapter3" class="chapter-card" data-chapter="3">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 3</span>
-                        </div>
-                    </a>
-                    <a href="/chapter2" class="chapter-card" data-chapter="2">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 2</span>
-                        </div>
-                    </a>
-                    <a href="/chapter1" class="chapter-card" data-chapter="1">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 1</span>
-                        </div>
-                    </a>
-                    <a href="/chapter0" class="chapter-card" data-chapter="0">
-                        <div class="card-content">
-                            <span class="chap-num">Chapter 0</span>
-                        </div>
-                    </a>
-                </div>
-            </section>
+                <a href="/chapter4" class="chapter-card" data-chapter="4">
+                    <div class="card-content">
+                        <span class="chap-num">Chapter 4</span>
+                    </div>
+                </a>
+                <a href="/chapter3" class="chapter-card" data-chapter="3">
+                    <div class="card-content">
+                        <span class="chap-num">Chapter 3</span>
+                    </div>
+                </a>
+                <a href="/chapter2" class="chapter-card" data-chapter="2">
+                    <div class="card-content">
+                        <span class="chap-num">Chapter 2</span>
+                    </div>
+                </a>
+                <a href="/chapter1" class="chapter-card" data-chapter="1">
+                    <div class="card-content">
+                        <span class="chap-num">Chapter 1</span>
+                    </div>
+                </a>
+                <a href="/chapter0" class="chapter-card" data-chapter="0">
+                    <div class="card-content">
+                        <span class="chap-num">Chapter 0</span>
+                    </div>
+                </a>
+        </div>
+        </section>
         </div>
 
-        <section class="info-section">
+        <section id="story-so-far" class="info-section" aria-label="Story So Far" itemprop="description">
             <h2>The Story So Far</h2>
 
             <div class="story-content">
@@ -1558,13 +1565,13 @@
             </div>
 
         </section>
-        <div id="reader-view" style="display: none;">
+        <div id="reader-view" style="display: none;" data-nosnippet>
             <div id="chapterPages"></div>
             <div class="reader-controls bottom-controls" id="readerNav">
             </div>
         </div>
     </main>
-    <div class="comments-wrapper">
+    <div class="comments-wrapper" data-nosnippet>
         <button type="button" class="collapsible">Show Comments</button>
         <div class="content">
             <iframe src="https://www5.cbox.ws/box/?boxid=952057&boxtag=AcwfB0" title="Comments Section"

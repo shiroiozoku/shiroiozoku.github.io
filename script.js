@@ -1,9 +1,10 @@
 import { chapters } from './pages.js';
 
-const validChapters = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const validChapters = [0, 1, 2, 3, 4, 5];
 
 const homeView = document.getElementById('home-view');
 const readerView = document.getElementById('reader-view');
+const storySoFar = document.getElementById('story-so-far');
 const mangaPagesDiv = document.getElementById('chapterPages');
 const readerNavDiv = document.getElementById('readerNav');
 const chapterGrid = document.getElementById('chapterGrid');
@@ -12,14 +13,19 @@ const startBtn = document.getElementById('startReadingBtn');
 function toggleView(view) {
     if (view === 'reader') {
         if (homeView) homeView.style.display = 'none';
+        if (storySoFar) storySoFar.style.display = 'none';
         if (readerView) readerView.style.display = 'block';
+
         window.scrollTo(0, 0);
     } else {
         if (homeView) homeView.style.display = 'block';
+        if (storySoFar) storySoFar.style.display = 'block';
         if (readerView) readerView.style.display = 'none';
+
         mangaPagesDiv.innerHTML = '';
         document.title = 'Shiroi Ozoku';
         history.pushState(null, '', '/');
+        window.scrollTo(0, 0);
     }
 }
 
@@ -57,7 +63,7 @@ async function loadChapterPages(chapterNumber) {
         return;
     }
 
-    document.title = chapterNumber === 8 ? 'All Pages' : `Chapter ${chapterNumber}`;
+    document.title = chapterNumber === 5 ? 'All Pages' : `Chapter ${chapterNumber}`;
     updateReaderNavigation(chapterNumber);
 
     for (let i = 0; i < chapter.images.length; i++) {
@@ -82,35 +88,50 @@ async function loadChapterPages(chapterNumber) {
 function updateReaderNavigation(currentChap) {
     readerNavDiv.innerHTML = '';
 
-    if (currentChap > 0 && currentChap < 8 && chapters[currentChap - 1]) {
+    if (currentChap > 0 && currentChap <= 5 && chapters[currentChap - 1]) {
         const prev = document.createElement('button');
         prev.className = 'nav-btn';
         prev.textContent = '- Previous';
+
         prev.onclick = () => {
-            history.pushState({ chapter: currentChap - 1 }, '', `/chapter${currentChap - 1}`);
+            history.pushState(
+                { chapter: currentChap - 1 },
+                '',
+                `/chapter${currentChap - 1}`
+            );
+
             loadChapterPages(currentChap - 1);
         };
+
         readerNavDiv.appendChild(prev);
     } else {
         readerNavDiv.appendChild(document.createElement('div'));
     }
 
-    if (chapters[currentChap + 1] && currentChap + 1 < 8) {
+    if (chapters[currentChap + 1] && currentChap + 1 <= 5) {
         const next = document.createElement('button');
         next.className = 'nav-btn primary';
         next.textContent = 'Next +';
+
         next.onclick = () => {
-            history.pushState({ chapter: currentChap + 1 }, '', `/chapter${currentChap + 1}`);
+            history.pushState(
+                { chapter: currentChap + 1 },
+                '',
+                `/chapter${currentChap + 1}`
+            );
+
             loadChapterPages(currentChap + 1);
         };
+
         readerNavDiv.appendChild(next);
     } else {
         const homeBtn = document.createElement('button');
         homeBtn.className = 'nav-btn primary';
         homeBtn.textContent = 'Home';
+
         homeBtn.onclick = () => toggleView('home');
 
-        if (currentChap === 8) {
+        if (currentChap === 5) {
             homeBtn.style.borderRadius = '4px';
         }
 
@@ -134,7 +155,7 @@ if (chapterGrid) {
 
 if (startBtn) {
     startBtn.addEventListener('click', () => {
-        loadChapterPages(8);
+        loadChapterPages(5);
     });
 }
 
