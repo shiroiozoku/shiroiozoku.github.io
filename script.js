@@ -1,6 +1,6 @@
 import { chapters } from './pages.js';
 
-const validChapters = [0, 1, 2, 3, 4, 5];
+const validChapters = [0, 1, 2, 3, 4, 5, 6];
 
 const homeView = document.getElementById('home-view');
 const readerView = document.getElementById('reader-view');
@@ -63,7 +63,7 @@ async function loadChapterPages(chapterNumber) {
         return;
     }
 
-    document.title = chapterNumber === 5 ? 'All Pages' : `Chapter ${chapterNumber}`;
+    document.title = chapterNumber === 6 ? 'All Pages' : `Chapter ${chapterNumber}`;
     updateReaderNavigation(chapterNumber);
 
     for (let i = 0; i < chapter.images.length; i++) {
@@ -88,7 +88,7 @@ async function loadChapterPages(chapterNumber) {
 function updateReaderNavigation(currentChap) {
     readerNavDiv.innerHTML = '';
 
-    if (currentChap > 0 && currentChap <= 5 && chapters[currentChap - 1]) {
+    if (currentChap > 0 && currentChap < 6 && chapters[currentChap - 1]) {
         const prev = document.createElement('button');
         prev.className = 'nav-btn';
         prev.textContent = '- Previous';
@@ -108,7 +108,7 @@ function updateReaderNavigation(currentChap) {
         readerNavDiv.appendChild(document.createElement('div'));
     }
 
-    if (chapters[currentChap + 1] && currentChap + 1 <= 5) {
+    if (chapters[currentChap + 1] && currentChap + 1 < 6) {
         const next = document.createElement('button');
         next.className = 'nav-btn primary';
         next.textContent = 'Next +';
@@ -131,7 +131,7 @@ function updateReaderNavigation(currentChap) {
 
         homeBtn.onclick = () => toggleView('home');
 
-        if (currentChap === 5) {
+        if (currentChap === 6) {
             homeBtn.style.borderRadius = '4px';
         }
 
@@ -155,7 +155,7 @@ if (chapterGrid) {
 
 if (startBtn) {
     startBtn.addEventListener('click', () => {
-        loadChapterPages(5);
+        loadChapterPages(6);
     });
 }
 
