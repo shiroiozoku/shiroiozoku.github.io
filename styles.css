@@ -12,6 +12,11 @@
     font-family: 'Manga Font', Arial, sans-serif !important;
 }
 
+*::selection {
+  background-color: #ff9271;
+  color: var(--bg-color);
+}
+
 a.kofi-button {
     box-shadow: rgba(0, 0, 0, 0.637) 0px 2px 5px -1px, rgba(0, 0, 0, 0.671) 0px 1px 3px -1px !important;
     transition: 0.2s ease-in !important;
