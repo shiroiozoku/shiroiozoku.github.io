@@ -123,10 +123,10 @@ a.kofi-button {
 
 .hero {
     position: relative;
-    height: 70vh;
+    height: 90vh;
     background-image: url('Banner.png');
     background-size: contain;
-    background-color: white;
+    background-color: #bfddf0;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
