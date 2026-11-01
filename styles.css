@@ -13,8 +13,8 @@
 }
 
 *::selection {
-  background-color: #ff9271;
-  color: var(--bg-color);
+    background-color: #ff9271;
+    color: var(--bg-color);
 }
 
 a.kofi-button {
@@ -136,7 +136,7 @@ a.kofi-button {
 
 @media (max-width: 480px) {
     .hero {
-        height: 90vh;
+        height: 80vh;
     }
 }
 
