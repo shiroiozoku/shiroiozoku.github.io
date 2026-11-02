@@ -1594,8 +1594,19 @@
         </div>
     </div>
     <script type="module" src="script.js" defer></script>
-    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
-        data-cf-beacon='{"token": "fd9ba3c6710d4bc2b5c2f78b226cbb77"}'></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('noanalytics') !== '1') {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+            script.setAttribute('data-cf-beacon',
+                '{"token":"fd9ba3c6710d4bc2b5c2f78b226cbb77"}'
+            );
+            document.head.appendChild(script);
+        }
+    </script>
 </body>
 
 </html>
